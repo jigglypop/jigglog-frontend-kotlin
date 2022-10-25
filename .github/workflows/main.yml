@@ -8,8 +8,8 @@ on:
 env:
   PROJECT_NAME: jigglognext
   BK_NAME: jigglognext
-  APP_NAME: jigglognext
-  DEPLOY_GROUP: jigglognext
+  APP_NAME: jigglogkotlin
+  DEPLOY_GROUP: jigglogkotlin
 
 jobs:
   build:
