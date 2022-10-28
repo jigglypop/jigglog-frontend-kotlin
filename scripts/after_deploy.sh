@@ -20,4 +20,4 @@ echo "pm2 프론트엔드 실행완료" >> /home/ubuntu/log.txt
 # Google 서치콘솔에 sitemap 업데이트 핑 전송
 curl http://google.com/ping?sitemap=http://release.jigglog.com/sitemap.xml
 
-echo "Google에 sitemap 핑 전송   4"
+echo "Google에 sitemap 핑 전송"
