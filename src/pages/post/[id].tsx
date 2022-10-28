@@ -20,14 +20,14 @@ function PostPage({ id }) {
   useCommentEffect(getComments, postData);
   return (
     <S.PostPage>
-      {isSuccess && postData.data && (
+      {isSuccess && (
         <>
           <Meta
             description={
-              postData?.data?.data.title + " | " + postData?.data?.data.summary
+              postData?.data?.title + " | " + postData?.data?.summary
             }
           />
-          <Post post={postData.data.data} />
+          <Post post={postData.data} />
         </>
       )}
       {isLoading && <Spinner />}

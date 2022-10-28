@@ -7,29 +7,33 @@ import { useEffect } from "react";
 import { createToast } from "../../util/toast";
 import { useRouter } from "next/router";
 import { useUpdateAtom } from "jotai/utils";
+import { IUser } from "../../type/user";
+import cache from "../../util/cache";
 
 export function useUserQueryEffect() {
   const setModal = useUpdateAtom(modalAtom);
   const [user, setUser] = useAtom(userAtom);
   const { mutate, data, isError, error, isLoading } = useMutation(getCheckApi, {
-    onSuccess(res) {
-      setUser({ error: "", user: { ...res.data.data } });
+    onSuccess(res: IUser) {
+      setUser({ error: "", user: { ...res } });
       setModal({
         on: false,
         type: "",
       });
     },
-    onError() {
+    onError(err: Error) {
       setUser({
         ...user,
-        error: "",
+        error: "오류 : " + err.message,
       });
     },
   });
   // 라이프사이클
   // 체크 로직
   useEffect(() => {
-    mutate();
+    if (cache.get("token")) {
+      mutate();
+    }
   }, []);
   return { check: mutate, data, isError, error, isLoading };
 }

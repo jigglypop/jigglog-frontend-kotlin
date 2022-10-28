@@ -32,12 +32,12 @@ export function useCategoriesEffect() {
     setCategories({
       error: error ? error.toString() : "",
       categories:
-        data?.data.data.filter((category: ICategoryHeader) => {
+        data?.data.filter((category: ICategoryHeader) => {
           if (category.id !== 1 && category.posts !== 0) {
             return category;
           }
         }) || [],
     });
   }, [data, isLoading, isError]);
-  return { categories: data?.data.data || [], isLoading, isError, error };
+  return { categories: data?.data || [], isLoading, isError, error };
 }

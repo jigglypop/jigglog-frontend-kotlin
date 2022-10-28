@@ -1,4 +1,6 @@
-export const BASE_URL = "https://moija.link";
+// export const BASE_URL = "https://moija.link";
+export const BASE_URL = "https://jigglog.com";
+
 export const S3_URL =
   "https://jiggloghttps.s3.ap-northeast-2.amazonaws.com/gltf";
 export const LOCAL_URL = "http://localhost:4000";

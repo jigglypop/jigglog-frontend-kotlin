@@ -10,7 +10,7 @@ export function useTagsActions() {
       setTags({
         error: "",
         tags: [
-          ...tagsResponse.data.data.filter(
+          ...tagsResponse.data.filter(
             (category) => category.title !== "resume"
           ),
         ],

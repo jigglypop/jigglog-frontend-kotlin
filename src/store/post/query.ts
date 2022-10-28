@@ -14,7 +14,7 @@ export const usePostEffect = (id: string) => {
       onSuccess(res) {
         if (res.data) {
           setPost({
-            post: res.data.data,
+            post: res.data,
             error: "",
           });
         } else {

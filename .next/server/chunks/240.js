@@ -11,7 +11,6 @@ exports.modules = {
 /* harmony export */   "Hh": () => (/* binding */ getCheckApi),
 /* harmony export */   "kj": () => (/* binding */ postLoginApi)
 /* harmony export */ });
-/* unused harmony export postGithubApi */
 /* harmony import */ var _constants_URL__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5539);
 /* harmony import */ var _methods__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2131);
 
@@ -24,9 +23,6 @@ const postLoginApi = async (body)=>{
 };
 const postRegisterApi = async (body)=>{
     return await (0,_methods__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)().post(`${_constants_URL__WEBPACK_IMPORTED_MODULE_0__/* .SERVER_URL */ .LB}/auth/register`, body);
-};
-const postGithubApi = async (body)=>{
-    return await Api().postGithub(`https://github.com/login/oauth/access_token?client_id=${body.client_id}&client_secret=${body.client_secret}&code=${body.code}`, body);
 };
 
 
@@ -239,12 +235,14 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_query__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(6689);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _util_toast__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(7226);
+/* harmony import */ var _util_toast__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(7226);
 /* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(1853);
 /* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var jotai_utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(2752);
+/* harmony import */ var _util_cache__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(648);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_modal_atom__WEBPACK_IMPORTED_MODULE_1__, jotai__WEBPACK_IMPORTED_MODULE_2__, _atom__WEBPACK_IMPORTED_MODULE_3__, jotai_utils__WEBPACK_IMPORTED_MODULE_7__]);
 ([_modal_atom__WEBPACK_IMPORTED_MODULE_1__, jotai__WEBPACK_IMPORTED_MODULE_2__, _atom__WEBPACK_IMPORTED_MODULE_3__, jotai_utils__WEBPACK_IMPORTED_MODULE_7__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+
 
 
 
@@ -262,7 +260,7 @@ function useUserQueryEffect() {
             setUser({
                 error: "",
                 user: {
-                    ...res.data.data
+                    ...res
                 }
             });
             setModal({
@@ -270,17 +268,19 @@ function useUserQueryEffect() {
                 type: ""
             });
         },
-        onError () {
+        onError (err) {
             setUser({
                 ...user,
-                error: ""
+                error: "오류 : " + err.message
             });
         }
     });
     // 라이프사이클
     // 체크 로직
     (0,react__WEBPACK_IMPORTED_MODULE_5__.useEffect)(()=>{
-        mutate();
+        if (_util_cache__WEBPACK_IMPORTED_MODULE_8__/* ["default"].get */ .Z.get("token")) {
+            mutate();
+        }
     }, []);
     return {
         check: mutate,
@@ -305,7 +305,7 @@ function useUserActions() {
             type: ""
         });
         router.push("/");
-        (0,_util_toast__WEBPACK_IMPORTED_MODULE_8__/* .createToast */ .Y)("로그아웃 ");
+        (0,_util_toast__WEBPACK_IMPORTED_MODULE_9__/* .createToast */ .Y)("로그아웃 ");
     };
     const commentLogout = async ()=>{
         localStorage.clear();
@@ -317,7 +317,7 @@ function useUserActions() {
             on: false,
             type: ""
         });
-        (0,_util_toast__WEBPACK_IMPORTED_MODULE_8__/* .createToast */ .Y)("로그아웃 ");
+        (0,_util_toast__WEBPACK_IMPORTED_MODULE_9__/* .createToast */ .Y)("로그아웃 ");
     };
     return {
         logout,

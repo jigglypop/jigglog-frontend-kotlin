@@ -22,7 +22,7 @@ export function useResumeEffect() {
       onSuccess(res) {
         if (res.data) {
           setResume({
-            resume: res.data.data,
+            resume: res.data,
             error: "",
           });
         } else {

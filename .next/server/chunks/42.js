@@ -11,6 +11,8 @@ exports.modules = {
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2167);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _util_cache__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(648);
+
 
 const getMatch = (data)=>{
     return data.split("<br>")[0].match(/Error: (.)+/)[0].replace("Error: ", "");
@@ -21,6 +23,7 @@ const headers = {
 };
 const makeErrorMessage = (err)=>{
     const errJson = err.toJSON();
+    console.log("에러제이슨");
     if (err.response && err.response.data) {
         errJson.err = getMatch(err.response.data);
     } else {
@@ -34,54 +37,60 @@ function Api() {
             const response = await axios__WEBPACK_IMPORTED_MODULE_0___default().get(URL);
             return response;
         } catch (err) {
-            return makeErrorMessage(err);
+            return err;
+        // return makeErrorMessage(err);
         }
     };
     const getToken = async (URL)=>{
-        try {
-            let token = "";
-            if (localStorage && localStorage.getItem("token")) {
-                token = `Bearer ${localStorage.getItem("token").toString()}`;
-                headers.Authorization = token;
+        // try {
+        //   let token = "";
+        //   if (localStorage && localStorage.getItem("token")) {
+        //     token = `${localStorage.getItem("token").toString()}`;
+        //     headers.Authorization = token;
+        //   }
+        //   const response = await axios.get(URL, { headers: headers });
+        //   return response;
+        // } catch (err) {
+        //   return err;
+        //   // return makeErrorMessage(err);
+        // }
+        const res = await fetch(URL, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: _util_cache__WEBPACK_IMPORTED_MODULE_1__/* ["default"].get */ .Z.get("token")
             }
-            const response = await axios__WEBPACK_IMPORTED_MODULE_0___default().get(URL, {
-                headers: headers
-            });
-            return response;
-        } catch (err) {
-            return makeErrorMessage(err);
+        });
+        if (res.status === 200) {
+            const data = await res.json();
+            return data;
+        } else {
+            const error = await res.json();
+            throw new Error(error.message);
         }
     };
     const post = async (URL, body)=>{
-        try {
-            const response = await axios__WEBPACK_IMPORTED_MODULE_0___default().post(URL, body, {
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            });
-            return response;
-        } catch (err) {
-            return makeErrorMessage(err);
-        }
-    };
-    const postGithub = async (URL, body)=>{
-        try {
-            const response = await axios__WEBPACK_IMPORTED_MODULE_0___default().post(URL, body, {
-                headers: {
-                    Accept: "application/json",
-                    "Access-Control-Allow-Origin": "*"
-                }
-            });
-            return response;
-        } catch (err) {
-            return makeErrorMessage(err);
+        const res = await fetch(URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+        });
+        if (res.status === 200) {
+            localStorage.setItem("token", JSON.stringify(res.headers.get("token")));
+            const data = await res.json();
+            return data;
+        } else {
+            const error = await res.json();
+            throw new Error(error.message);
         }
     };
     const postToken = async (URL, body)=>{
         try {
             let token = "";
             if (localStorage && localStorage.getItem("token")) {
-                token = `Bearer ${localStorage.getItem("token").toString()}`;
+                token = `${localStorage.getItem("token").toString()}`;
                 headers.Authorization = token;
             }
             const response = await axios__WEBPACK_IMPORTED_MODULE_0___default().post(URL, body, {
@@ -89,7 +98,7 @@ function Api() {
             });
             return response;
         } catch (err) {
-            return makeErrorMessage(err);
+            return err;
         }
     };
     const putToken = async (URL, body)=>{
@@ -128,7 +137,6 @@ function Api() {
         postToken,
         getToken,
         putToken,
-        postGithub,
         deleteToken
     };
 }
@@ -144,11 +152,40 @@ function Api() {
 /* harmony export */   "LB": () => (/* binding */ SERVER_URL)
 /* harmony export */ });
 /* unused harmony exports BASE_URL, LOCAL_URL, MAIN_URL */
-const BASE_URL = "https://moija.link";
+// export const BASE_URL = "https://moija.link";
+const BASE_URL = "https://jigglog.com";
 const S3_URL = "https://jiggloghttps.s3.ap-northeast-2.amazonaws.com/gltf";
 const LOCAL_URL = "http://localhost:4000";
 const SERVER_URL = `${BASE_URL}/api`;
 const MAIN_URL = (/* unused pure expression or super */ null && (`https://jigglog.com`)); // export const SERVER_URL = `${LOCAL_URL}/api`;
+
+
+/***/ }),
+
+/***/ 648:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+const cache = {
+    get (key) {
+        const result = localStorage.getItem(key);
+        if (result) {
+            const data = JSON.parse(result);
+            return data;
+        } else {
+            return null;
+        }
+    },
+    set (key, data) {
+        localStorage.setItem(key, JSON.stringify(data));
+    },
+    remove (key) {
+        localStorage.removeItem(key);
+    }
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (cache);
 
 
 /***/ })

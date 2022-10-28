@@ -129,7 +129,7 @@ function ResumePage() {
                         description: "이력서"
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_resume_portfolio_resume__WEBPACK_IMPORTED_MODULE_8__/* ["default"] */ .Z, {
-                        resume: resume.data.data
+                        resume: resume.data
                     })
                 ]
             }),
@@ -216,7 +216,7 @@ function useResumeEffect() {
         onSuccess (res) {
             if (res.data) {
                 setResume({
-                    resume: res.data.data,
+                    resume: res.data,
                     error: ""
                 });
             } else {

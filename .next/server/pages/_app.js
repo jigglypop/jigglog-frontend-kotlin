@@ -1289,29 +1289,27 @@ function useLoginActions() {
     const [user, setUser] = (0,jotai__WEBPACK_IMPORTED_MODULE_2__.useAtom)(_user_atom__WEBPACK_IMPORTED_MODULE_4__/* .userAtom */ .L);
     const { mutate , isLoading  } = (0,react_query__WEBPACK_IMPORTED_MODULE_5__.useMutation)(_api_Auth__WEBPACK_IMPORTED_MODULE_0__/* .postLoginApi */ .kj, {
         onSuccess (res) {
-            if (res.data) {
-                localStorage.setItem("token", res.headers.token);
-                setUser({
-                    error: "",
-                    user: {
-                        ...res.data.data
-                    }
-                });
-                setLoginForm({
-                    username: "",
-                    password: ""
-                });
-                setModal({
-                    on: false,
-                    type: ""
-                });
-                (0,_util_toast__WEBPACK_IMPORTED_MODULE_7__/* .createToast */ .Y)("로그인");
-            } else {
-                setUser({
-                    ...user,
-                    error: "오류 : " + res.err
-                });
-            }
+            setUser({
+                error: "",
+                user: {
+                    ...res
+                }
+            });
+            setLoginForm({
+                username: "",
+                password: ""
+            });
+            setModal({
+                on: false,
+                type: ""
+            });
+            (0,_util_toast__WEBPACK_IMPORTED_MODULE_7__/* .createToast */ .Y)("로그인");
+        },
+        onError (res) {
+            setUser({
+                ...user,
+                error: "오류 : " + res.message
+            });
         }
     });
     const changeLoginForm = (e)=>{
@@ -1388,7 +1386,7 @@ function useTagsActions() {
             setTags({
                 error: "",
                 tags: [
-                    ...tagsResponse.data.data.filter((category)=>category.title !== "resume"), 
+                    ...tagsResponse.data.filter((category)=>category.title !== "resume"), 
                 ]
             });
         } else {

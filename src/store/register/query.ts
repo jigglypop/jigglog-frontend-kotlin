@@ -5,31 +5,30 @@ import { userAtom } from "../user/atom";
 import { useMutation } from "react-query";
 import { registerFormAtom } from "./atom";
 import { postRegisterApi } from "../../api/Auth";
+import { IUser } from "../../type/user";
 
 export function useRegisterActions() {
   const [_, setModal] = useAtom(modalAtom);
   const [registerform, setRegisterForm] = useAtom(registerFormAtom);
   const [user, setUser] = useAtom(userAtom);
   const { mutate, isLoading } = useMutation(postRegisterApi, {
-    onSuccess(res) {
-      if (res.data) {
-        localStorage.setItem("token", res.headers.token);
-        setUser({ error: "", user: { ...res.data.data } });
-        setRegisterForm({
-          username: "",
-          password: "",
-        });
-        setModal({
-          on: false,
-          type: "",
-        });
-        createToast("회원가입");
-      } else {
-        setUser({
-          ...user,
-          error: "오류 : " + res.err,
-        });
-      }
+    onSuccess(res: IUser) {
+      setUser({ error: "", user: { ...res } });
+      setRegisterForm({
+        username: "",
+        password: "",
+      });
+      setModal({
+        on: false,
+        type: "",
+      });
+      createToast("회원가입");
+    },
+    onError(res: Error) {
+      setUser({
+        ...user,
+        error: "오류 : " + res.message,
+      });
     },
   });
 

@@ -16,7 +16,7 @@ export default function ResumePage() {
       {isSuccess && resume.data && (
         <>
           <Meta description={"이력서"} />
-          <Resume resume={resume.data.data} />
+          <Resume resume={resume.data} />
         </>
       )}
       {isLoading && <Spinner />}

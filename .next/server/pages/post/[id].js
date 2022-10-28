@@ -1666,13 +1666,13 @@ function PostPage({ id  }) {
     (0,_store_comment_query__WEBPACK_IMPORTED_MODULE_5__/* .useCommentEffect */ .j)(getComments, postData);
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_components_post_style__WEBPACK_IMPORTED_MODULE_4__/* .PostPage */ .s6, {
         children: [
-            isSuccess && postData.data && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+            isSuccess && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
                 children: [
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_common_meta_Meta__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z, {
-                        description: postData?.data?.data.title + " | " + postData?.data?.data.summary
+                        description: postData?.data?.title + " | " + postData?.data?.summary
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_post_Post__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z, {
-                        post: postData.data.data
+                        post: postData.data
                     })
                 ]
             }),

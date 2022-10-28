@@ -213,7 +213,7 @@ function useCategoriesEffect() {
     (0,react__WEBPACK_IMPORTED_MODULE_4__.useEffect)(()=>{
         setCategories({
             error: error ? error.toString() : "",
-            categories: data?.data.data.filter((category)=>{
+            categories: data?.data.filter((category)=>{
                 if (category.id !== 1 && category.posts !== 0) {
                     return category;
                 }
@@ -225,7 +225,7 @@ function useCategoriesEffect() {
         isError
     ]);
     return {
-        categories: data?.data.data || [],
+        categories: data?.data || [],
         isLoading,
         isError,
         error

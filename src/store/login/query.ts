@@ -6,31 +6,30 @@ import { loginFormAtom } from "./atom";
 import { userAtom } from "../user/atom";
 import { useMutation } from "react-query";
 import { useUpdateAtom } from "jotai/utils";
+import { IUser } from "../../type/user";
 
 export function useLoginActions() {
   const setModal = useUpdateAtom(modalAtom);
   const [loginform, setLoginForm] = useAtom(loginFormAtom);
   const [user, setUser] = useAtom(userAtom);
   const { mutate, isLoading } = useMutation(postLoginApi, {
-    onSuccess(res) {
-      if (res.data) {
-        localStorage.setItem("token", res.headers.token);
-        setUser({ error: "", user: { ...res.data.data } });
-        setLoginForm({
-          username: "",
-          password: "",
-        });
-        setModal({
-          on: false,
-          type: "",
-        });
-        createToast("로그인");
-      } else {
-        setUser({
-          ...user,
-          error: "오류 : " + res.err,
-        });
-      }
+    onSuccess(res: IUser) {
+      setUser({ error: "", user: { ...res } });
+      setLoginForm({
+        username: "",
+        password: "",
+      });
+      setModal({
+        on: false,
+        type: "",
+      });
+      createToast("로그인");
+    },
+    onError(res: Error) {
+      setUser({
+        ...user,
+        error: "오류 : " + res.message,
+      });
     },
   });
 

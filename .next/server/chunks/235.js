@@ -308,29 +308,27 @@ function useRegisterActions() {
     const [user, setUser] = (0,jotai__WEBPACK_IMPORTED_MODULE_1__.useAtom)(_user_atom__WEBPACK_IMPORTED_MODULE_2__/* .userAtom */ .L);
     const { mutate , isLoading  } = (0,react_query__WEBPACK_IMPORTED_MODULE_3__.useMutation)(_api_Auth__WEBPACK_IMPORTED_MODULE_5__/* .postRegisterApi */ .EB, {
         onSuccess (res) {
-            if (res.data) {
-                localStorage.setItem("token", res.headers.token);
-                setUser({
-                    error: "",
-                    user: {
-                        ...res.data.data
-                    }
-                });
-                setRegisterForm({
-                    username: "",
-                    password: ""
-                });
-                setModal({
-                    on: false,
-                    type: ""
-                });
-                (0,_util_toast__WEBPACK_IMPORTED_MODULE_6__/* .createToast */ .Y)("회원가입");
-            } else {
-                setUser({
-                    ...user,
-                    error: "오류 : " + res.err
-                });
-            }
+            setUser({
+                error: "",
+                user: {
+                    ...res
+                }
+            });
+            setRegisterForm({
+                username: "",
+                password: ""
+            });
+            setModal({
+                on: false,
+                type: ""
+            });
+            (0,_util_toast__WEBPACK_IMPORTED_MODULE_6__/* .createToast */ .Y)("회원가입");
+        },
+        onError (res) {
+            setUser({
+                ...user,
+                error: "오류 : " + res.message
+            });
         }
     });
     const changeRegisterForm = (e)=>{

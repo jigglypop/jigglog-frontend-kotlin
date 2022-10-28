@@ -544,34 +544,6 @@ __webpack_async_result__();
 
 /***/ }),
 
-/***/ 648:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-const cache = {
-    get (key) {
-        const result = localStorage.getItem(key);
-        if (result) {
-            const data = JSON.parse(result);
-            return data;
-        } else {
-            return null;
-        }
-    },
-    set (key, data) {
-        localStorage.setItem(key, JSON.stringify(data));
-    },
-    remove (key) {
-        localStorage.removeItem(key);
-    }
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (cache);
-
-
-/***/ }),
-
 /***/ 3616:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
