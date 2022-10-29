@@ -19,8 +19,8 @@ exports.modules = {
 const getTagsApi = async ()=>{
     return await (0,_methods__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)().get(`${_constants_URL__WEBPACK_IMPORTED_MODULE_0__/* .SERVER_URL */ .LB}/tag`);
 };
-const getTagApi = async (id)=>{
-    return await (0,_methods__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)().get(`${_constants_URL__WEBPACK_IMPORTED_MODULE_0__/* .SERVER_URL */ .LB}/tag/${id}` + `/?page=1`);
+const getTagApi = async (id, page = 1)=>{
+    return await (0,_methods__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)().get(`${_constants_URL__WEBPACK_IMPORTED_MODULE_0__/* .SERVER_URL */ .LB}/tag/${id}` + `/?page=${page}`);
 };
 
 
@@ -1371,33 +1371,34 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony export */   "M": () => (/* binding */ useTagsActions)
 /* harmony export */ });
 /* harmony import */ var jotai__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2451);
-/* harmony import */ var _api_Tag__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6563);
-/* harmony import */ var _atom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(9847);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([jotai__WEBPACK_IMPORTED_MODULE_0__, _atom__WEBPACK_IMPORTED_MODULE_2__]);
-([jotai__WEBPACK_IMPORTED_MODULE_0__, _atom__WEBPACK_IMPORTED_MODULE_2__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+/* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1175);
+/* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_query__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _api_Tag__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6563);
+/* harmony import */ var _atom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9847);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([jotai__WEBPACK_IMPORTED_MODULE_0__, _atom__WEBPACK_IMPORTED_MODULE_3__]);
+([jotai__WEBPACK_IMPORTED_MODULE_0__, _atom__WEBPACK_IMPORTED_MODULE_3__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+
 
 
 
 function useTagsActions() {
-    const [tags, setTags] = (0,jotai__WEBPACK_IMPORTED_MODULE_0__.useAtom)(_atom__WEBPACK_IMPORTED_MODULE_2__/* .tagsAtom */ .q);
-    const getTags = async ()=>{
-        const tagsResponse = await (0,_api_Tag__WEBPACK_IMPORTED_MODULE_1__/* .getTagsApi */ .R)();
-        if (tagsResponse.status === 200) {
-            setTags({
-                error: "",
-                tags: [
-                    ...tagsResponse.data.filter((category)=>category.title !== "resume"), 
-                ]
-            });
-        } else {
+    const [tags, setTags] = (0,jotai__WEBPACK_IMPORTED_MODULE_0__.useAtom)(_atom__WEBPACK_IMPORTED_MODULE_3__/* .tagsAtom */ .q);
+    const { mutate , isLoading , isError , error  } = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useMutation)(_api_Tag__WEBPACK_IMPORTED_MODULE_2__/* .getTagsApi */ .R, {
+        onSuccess (res) {
             setTags({
                 ...tags,
-                error: tagsResponse.err
+                tags: res
+            });
+        },
+        onError (res) {
+            setTags({
+                ...tags,
+                error: "오류 : " + res.message
             });
         }
-    };
+    });
     return {
-        getTags
+        getTags: mutate
     };
 }
 
@@ -1865,7 +1866,7 @@ module.exports = import("jotai/utils");;
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [676,664,42,686,240,703,569,235,191], () => (__webpack_exec__(2957)));
+var __webpack_exports__ = __webpack_require__.X(0, [676,664,425,195,240,703,569,235,191], () => (__webpack_exec__(2957)));
 module.exports = __webpack_exports__;
 
 })();

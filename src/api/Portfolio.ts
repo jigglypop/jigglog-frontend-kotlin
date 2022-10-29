@@ -5,6 +5,6 @@ export const getPortfoliosApi = async () => {
   return await Api().get(`${SERVER_URL}/portfolio`);
 };
 
-export const getPortfolioApi = async (id: number) => {
+export const getPortfolioApi = async (id: string) => {
   return await Api().get(`${SERVER_URL}/portfolio/${id}`);
 };

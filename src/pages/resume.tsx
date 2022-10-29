@@ -13,10 +13,10 @@ export default function ResumePage() {
   const { resume, isSuccess, isLoading, isError } = useResumeEffect();
   return (
     <>
-      {isSuccess && resume.data && (
+      {isSuccess && (
         <>
           <Meta description={"이력서"} />
-          <Resume resume={resume.data} />
+          <Resume resume={resume} />
         </>
       )}
       {isLoading && <Spinner />}

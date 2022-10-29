@@ -189,11 +189,13 @@ function useCategoriesActions() {
         onSuccess (res) {
             setCategories({
                 ...categories,
-                categories: res.data.data.filter((category)=>{
-                    if (category.id !== 1 && category.posts !== 0) {
-                        return category;
-                    }
-                })
+                categories: res
+            });
+        },
+        onError (res) {
+            setCategories({
+                ...categories,
+                error: "오류 : " + res.message
             });
         }
     });
@@ -213,11 +215,7 @@ function useCategoriesEffect() {
     (0,react__WEBPACK_IMPORTED_MODULE_4__.useEffect)(()=>{
         setCategories({
             error: error ? error.toString() : "",
-            categories: data?.data.filter((category)=>{
-                if (category.id !== 1 && category.posts !== 0) {
-                    return category;
-                }
-            }) || []
+            categories: data || []
         });
     }, [
         data,

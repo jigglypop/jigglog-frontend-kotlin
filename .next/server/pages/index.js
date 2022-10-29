@@ -5,27 +5,6 @@ exports.id = 405;
 exports.ids = [405];
 exports.modules = {
 
-/***/ 5425:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "B": () => (/* binding */ getCategoriesApi),
-/* harmony export */   "e": () => (/* binding */ getCategoryApi)
-/* harmony export */ });
-/* harmony import */ var _constants_URL__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5539);
-/* harmony import */ var _methods__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2131);
-
-
-const getCategoriesApi = async ()=>{
-    return await (0,_methods__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)().get(`${_constants_URL__WEBPACK_IMPORTED_MODULE_0__/* .SERVER_URL */ .LB}/category`);
-};
-const getCategoryApi = async (id, page)=>{
-    return await (0,_methods__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)().get(`${_constants_URL__WEBPACK_IMPORTED_MODULE_0__/* .SERVER_URL */ .LB}/category/${id}` + `/?page=${page}`);
-};
-
-
-/***/ }),
-
 /***/ 2940:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -654,9 +633,9 @@ const Outer = ({ setProgress  })=>{
 function ThreeOuter({ categorySet  }) {
     const { 0: progress , 1: setProgress  } = (0,external_react_.useState)(0);
     (0,external_react_.useEffect)(()=>{
-        (0,JQuery.$)("body").css("overflow", "hidden");
+        (0,JQuery.$)("html").css("overflow", "hidden");
         return ()=>{
-            (0,JQuery.$)("body").css("overflow", "scroll");
+            (0,JQuery.$)("html").css("overflow", "scroll");
         };
     }, []);
     return /*#__PURE__*/ (0,jsx_runtime_.jsxs)(ThreeWrapper, {
@@ -1007,7 +986,7 @@ module.exports = import("jotai");;
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [828,42,703,191], () => (__webpack_exec__(441)));
+var __webpack_exports__ = __webpack_require__.X(0, [828,425,703,191], () => (__webpack_exec__(441)));
 module.exports = __webpack_exports__;
 
 })();

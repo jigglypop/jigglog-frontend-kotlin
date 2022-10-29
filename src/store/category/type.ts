@@ -4,4 +4,5 @@ export type ICategoryAtom = {
   posts: IPost[];
   page: number;
   last: number;
+  error: string;
 };

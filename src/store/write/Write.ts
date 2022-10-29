@@ -4,7 +4,6 @@ import {
   IChangeForm,
   IChangeFormAndName,
   IChangeForms,
-  IChangeTags,
   ISetCacheForm,
   IWriteFormAtom,
 } from "./type";
@@ -24,12 +23,12 @@ export function useWriteActions() {
     });
   };
 
-  const changeTags: IChangeTags = (e) => {
-    const tagArray = e.target.value
-      .split("#")
-      .filter((item: string) => item !== "");
-    setWriteForm({ ...writeform, ["tags"]: tagArray });
-  };
+  // const changeTags: IChangeTags = (e) => {
+  //   const tagArray = e.target.value
+  //     .split("#")
+  //     .filter((item: string) => item !== "");
+  //   setWriteForm({ ...writeform, ["tags"]: tagArray });
+  // };
 
   const changeformAndName: IChangeFormAndName = (value, name) => {
     setWriteForm({ ...writeform, [name]: value });
@@ -67,6 +66,6 @@ export function useWriteActions() {
     changeforms,
     resetWriteForm,
     changeformAndName,
-    changeTags,
+    // changeTags,
   };
 }

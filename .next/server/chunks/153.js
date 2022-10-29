@@ -1,28 +1,7 @@
 "use strict";
-exports.id = 803;
-exports.ids = [803];
+exports.id = 153;
+exports.ids = [153];
 exports.modules = {
-
-/***/ 5425:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "B": () => (/* binding */ getCategoriesApi),
-/* harmony export */   "e": () => (/* binding */ getCategoryApi)
-/* harmony export */ });
-/* harmony import */ var _constants_URL__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5539);
-/* harmony import */ var _methods__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2131);
-
-
-const getCategoriesApi = async ()=>{
-    return await (0,_methods__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)().get(`${_constants_URL__WEBPACK_IMPORTED_MODULE_0__/* .SERVER_URL */ .LB}/category`);
-};
-const getCategoryApi = async (id, page)=>{
-    return await (0,_methods__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)().get(`${_constants_URL__WEBPACK_IMPORTED_MODULE_0__/* .SERVER_URL */ .LB}/category/${id}` + `/?page=${page}`);
-};
-
-
-/***/ }),
 
 /***/ 1354:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -120,7 +99,8 @@ function Write() {
     (0,_store_user_query__WEBPACK_IMPORTED_MODULE_19__/* .useIsOwnerEffect */ .vq)();
     const { 0: value , 1: setValue  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("");
     const { 0: visibleMD , 1: setVisibleMD  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(true);
-    const { writeform , resetWriteForm , changeTags , changeform , changeformAndName , changeforms , writeApi , setCacheForm ,  } = (0,_store_write_Write__WEBPACK_IMPORTED_MODULE_6__/* .useWriteActions */ .T)();
+    const { writeform , resetWriteForm , // changeTags,
+    changeform , changeformAndName , changeforms , writeApi , setCacheForm ,  } = (0,_store_write_Write__WEBPACK_IMPORTED_MODULE_6__/* .useWriteActions */ .T)();
     const post = (0,jotai__WEBPACK_IMPORTED_MODULE_15__.useAtomValue)(_store_post_atom__WEBPACK_IMPORTED_MODULE_18__/* .postAtom */ .a);
     const { categories , getCategories  } = (0,_store_categories_query__WEBPACK_IMPORTED_MODULE_14__/* .useCategoriesActions */ .n)();
     const [writeUpdateType, setWriteUpdateType] = (0,jotai__WEBPACK_IMPORTED_MODULE_15__.useAtom)(_store_write_atom__WEBPACK_IMPORTED_MODULE_16__/* .writeUpdateTypeAtom */ .R);
@@ -161,12 +141,15 @@ function Write() {
     const uploadNameRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
     // usemutation
     const { mutate: writeSubmit  } = (0,react_query__WEBPACK_IMPORTED_MODULE_13__.useMutation)(writeApi, {
-        onSuccess (data) {
+        onSuccess (res) {
             getCategories();
-            router.push(`/post/${data.data.id}`).then(()=>(0,_util_toast__WEBPACK_IMPORTED_MODULE_20__/* .createToast */ .Y)("글쓰기"));
+            router.push(`/post/${res.id}`).then(()=>(0,_util_toast__WEBPACK_IMPORTED_MODULE_20__/* .createToast */ .Y)("글쓰기"));
+        },
+        onError (err) {
+            console.log(err);
         }
     });
-    const { mutate: updateSubmit  } = (0,react_query__WEBPACK_IMPORTED_MODULE_13__.useMutation)(()=>(0,_api_Post__WEBPACK_IMPORTED_MODULE_7__/* .putUpdateApi */ .$p)(writeUpdateType.id, {
+    const { mutate: updateSubmit  } = (0,react_query__WEBPACK_IMPORTED_MODULE_13__.useMutation)(()=>(0,_api_Post__WEBPACK_IMPORTED_MODULE_7__/* .patchUpdateApi */ .rX)(writeUpdateType.id, {
             title: writeform.title,
             summary: writeform.summary,
             content: writeform.content
@@ -178,8 +161,8 @@ function Write() {
     });
     const uploadMutaion = (0,react_query__WEBPACK_IMPORTED_MODULE_13__.useMutation)(_api_Post__WEBPACK_IMPORTED_MODULE_7__/* .uploadApi */ .aq, {
         onSuccess (data) {
-            changeformAndName(data.data.data.location, "images");
-            uploadNameRef.current.value = data.data.data.originalname;
+            changeformAndName(data.data.location, "images");
+            uploadNameRef.current.value = data.data.originalname;
         }
     });
     (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(()=>{
@@ -256,7 +239,9 @@ function Write() {
                     }),
                     writeUpdateType.type === "write" && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_common_input_BoxInput__WEBPACK_IMPORTED_MODULE_5__/* .BoxInput */ .Z, {
                         placeholder: "태그 입력 (#으로 분리)",
-                        onChange: changeTags
+                        name: "tags",
+                        value: writeform.tags,
+                        onChange: changeform
                     }),
                     writeUpdateType.type === "write" && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_style__WEBPACK_IMPORTED_MODULE_3__/* .ImageInput */ .aG, {
                         children: [
@@ -459,13 +444,12 @@ function useWriteActions() {
             [e.target.name]: e.target.value
         });
     };
-    const changeTags = (e)=>{
-        const tagArray = e.target.value.split("#").filter((item)=>item !== "");
-        setWriteForm({
-            ...writeform,
-            ["tags"]: tagArray
-        });
-    };
+    // const changeTags: IChangeTags = (e) => {
+    //   const tagArray = e.target.value
+    //     .split("#")
+    //     .filter((item: string) => item !== "");
+    //   setWriteForm({ ...writeform, ["tags"]: tagArray });
+    // };
     const changeformAndName = (value, name)=>{
         setWriteForm({
             ...writeform,
@@ -501,8 +485,7 @@ function useWriteActions() {
         changeform,
         changeforms,
         resetWriteForm,
-        changeformAndName,
-        changeTags
+        changeformAndName
     };
 }
 
@@ -530,7 +513,7 @@ const writeFormAtom = (0,jotai__WEBPACK_IMPORTED_MODULE_0__.atom)({
     images: "",
     user: "",
     category_title: "",
-    tags: []
+    tags: ""
 });
 writeFormAtom.debugLabel = "write";
 const writeUpdateTypeAtom = (0,jotai__WEBPACK_IMPORTED_MODULE_0__.atom)({

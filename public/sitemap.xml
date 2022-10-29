@@ -857,6 +857,12 @@
   </url>
 
   <url>
+    <loc>https://jigglog.com/tag/77</loc>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
+  </url>
+
+  <url>
     <loc>https://jigglog.com/portfolio/65</loc>
     <changefreq>daily</changefreq>
     <priority>1</priority>

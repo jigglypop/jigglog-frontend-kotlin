@@ -19,7 +19,7 @@ export default function PostItem({ post }: IPostItem) {
         </div>
         <div className="under-left">
           <AiOutlineMessage className="under-item" />
-          <p className="under-text">{post.comments?.length}</p>
+          <p className="under-text">{post.commentcount}</p>
           <AiFillEye className="under-item" />
           <p className="under-text">{post.viewcount}</p>
         </div>

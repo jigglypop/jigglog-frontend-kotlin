@@ -12,55 +12,49 @@ import { $ } from "../../util/JQuery";
 import { GradientText } from "../common/text/Text";
 
 export default function ThreeOuter({
-    categorySet,
+  categorySet,
 }: {
-    categorySet: ICategory[];
+  categorySet: ICategory[];
 }) {
-    const [progress, setProgress] = useState(0);
+  const [progress, setProgress] = useState(0);
 
-    useEffect(() => {
-        $("body").css("overflow", "hidden");
-        return () => {
-            $("body").css("overflow", "scroll");
-        };
-    }, []);
+  useEffect(() => {
+    $("html").css("overflow", "hidden");
+    return () => {
+      $("html").css("overflow", "scroll");
+    };
+  }, []);
 
-
-    return (
-        <S.ThreeWrapper>
-            <S.MainTitle>
-                <GradientText className="main-title">JIGGLOG</GradientText>
-                <GradientText className="main-description">
-                    JIGGLOG에 오신 것을 환영합니다
-                </GradientText>
-                <Progress progress={progress} />
-            </S.MainTitle>
-            <S.Tag className="isWide" id="earth-tag">
-                <h1>JIGGLYPOP</h1>
-                <h3>무언가 만드는 것을 좋아합니다</h3>
-                <h3>
-                    REACT 프론트 엔드에 관심이 많고 VUE, ANGULAR를 모두
-                    사용합니다.
-                </h3>
-                <h3>
-                    DJANGO, express, nest.js, spring boot 백엔드도 다룹니다.
-                </h3>
-                <h3>3D 웹에 관심이 많으며 항상 프로젝트를 쉬지 않고 합니다.</h3>
-                <GradientText>행성을 클릭하면 이력서 페이지로 이동합니다.</GradientText>
-            </S.Tag>
-            <Canvas
-                camera={{
-                    position: [100, 10, 10],
-                    far: 10000,
-                }}
-            >
-                <OrbitControls minDistance={60} maxDistance={100} />
-                <Earth setProgress={setProgress}/>
-                <Star setProgress={setProgress} />
-                <Outer setProgress={setProgress} />
-                <fog attach="fog" args={["#0a0a0a", 15, 120]} />
-                <CategoryStarSet categorySet={categorySet} />
-            </Canvas>
-        </S.ThreeWrapper>
-    );
+  return (
+    <S.ThreeWrapper>
+      <S.MainTitle>
+        <GradientText className="main-title">JIGGLOG</GradientText>
+        <GradientText className="main-description">
+          JIGGLOG에 오신 것을 환영합니다
+        </GradientText>
+        <Progress progress={progress} />
+      </S.MainTitle>
+      <S.Tag className="isWide" id="earth-tag">
+        <h1>JIGGLYPOP</h1>
+        <h3>무언가 만드는 것을 좋아합니다</h3>
+        <h3>REACT 프론트 엔드에 관심이 많고 VUE, ANGULAR를 모두 사용합니다.</h3>
+        <h3>DJANGO, express, nest.js, spring boot 백엔드도 다룹니다.</h3>
+        <h3>3D 웹에 관심이 많으며 항상 프로젝트를 쉬지 않고 합니다.</h3>
+        <GradientText>행성을 클릭하면 이력서 페이지로 이동합니다.</GradientText>
+      </S.Tag>
+      <Canvas
+        camera={{
+          position: [100, 10, 10],
+          far: 10000,
+        }}
+      >
+        <OrbitControls minDistance={60} maxDistance={100} />
+        <Earth setProgress={setProgress} />
+        <Star setProgress={setProgress} />
+        <Outer setProgress={setProgress} />
+        <fog attach="fog" args={["#0a0a0a", 15, 120]} />
+        <CategoryStarSet categorySet={categorySet} />
+      </Canvas>
+    </S.ThreeWrapper>
+  );
 }

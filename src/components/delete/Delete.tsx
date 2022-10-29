@@ -2,7 +2,7 @@ import React from "react";
 import { modalAtom } from "../../store/modal/atom";
 import Modal from "../common/modal/Modal";
 import * as S from "./style";
-import { useAtom, useAtomValue } from "jotai";
+import { useAtomValue } from "jotai";
 import { userAtom } from "../../store/user/atom";
 import { ColorButton } from "../common/button/ColorButton";
 import { useDeleteActions } from "../../store/delete/query";

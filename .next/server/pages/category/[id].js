@@ -129,7 +129,8 @@ jotai__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (awa
 const categoryAtom = (0,jotai__WEBPACK_IMPORTED_MODULE_0__.atom)({
     posts: [],
     page: 0,
-    last: 0
+    last: 0,
+    error: ""
 });
 categoryAtom.debugLabel = "category";
 
@@ -162,14 +163,19 @@ const useCategoryEffect = (id)=>{
         "category",
         id
     ], ()=>(0,_api_Category__WEBPACK_IMPORTED_MODULE_2__/* .getCategoryApi */ .e)(id, 1), {
-        onSuccess (result) {
-            if (result.data && result.data.data) {
-                setPostsAndLength({
-                    posts: result.data.data,
-                    page: 1,
-                    last: Math.ceil(result.data.data[0].postcount / 8)
-                });
-            }
+        onSuccess (res) {
+            setPostsAndLength({
+                posts: res,
+                page: 1,
+                last: Math.ceil(res[0].postcount / 8),
+                error: ""
+            });
+        },
+        onError (res) {
+            setPostsAndLength({
+                ...postsAndLength,
+                error: "오류 : " + res.message
+            });
         }
     });
     const { mutate: fetchCategory , isLoading: isFetchLoading  } = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useMutation)(()=>(0,_api_Category__WEBPACK_IMPORTED_MODULE_2__/* .getCategoryApi */ .e)(id, postsAndLength.page + 1), {
@@ -177,10 +183,17 @@ const useCategoryEffect = (id)=>{
             setPostsAndLength({
                 posts: [
                     ...postsAndLength.posts,
-                    ...res.data.data
+                    ...res
                 ],
                 page: postsAndLength.page + 1,
-                last: postsAndLength.last
+                last: postsAndLength.last,
+                error: ""
+            });
+        },
+        onError (res) {
+            setPostsAndLength({
+                ...postsAndLength,
+                error: "오류 : " + res.message
             });
         }
     });
@@ -450,7 +463,7 @@ module.exports = import("jotai");;
 var __webpack_require__ = require("../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [676,664,42,930,686,439], () => (__webpack_exec__(6014)));
+var __webpack_exports__ = __webpack_require__.X(0, [676,664,425,930,195,439], () => (__webpack_exec__(6014)));
 module.exports = __webpack_exports__;
 
 })();

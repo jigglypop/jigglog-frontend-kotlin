@@ -50,10 +50,10 @@ function UpdatePage({ id  }) {
     const [post] = (0,jotai__WEBPACK_IMPORTED_MODULE_11__.useAtom)(_store_post_atom__WEBPACK_IMPORTED_MODULE_12__/* .postAtom */ .a);
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
         children: [
-            isSuccess && postData.data && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+            isSuccess && postData && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
                 children: [
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_common_meta_Meta__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z, {
-                        description: "업데이트 | " + postData.data?.data.title
+                        description: "업데이트 | " + postData.data?.title
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_write_Write__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z, {})
                 ]
@@ -200,7 +200,7 @@ module.exports = import("remark-gfm");;
 var __webpack_require__ = require("../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [152,42,930,874,240,569,16,803,853], () => (__webpack_exec__(9743)));
+var __webpack_exports__ = __webpack_require__.X(0, [152,425,930,874,240,569,16,153,853], () => (__webpack_exec__(9743)));
 module.exports = __webpack_exports__;
 
 })();

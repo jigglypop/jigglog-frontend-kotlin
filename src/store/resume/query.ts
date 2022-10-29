@@ -20,17 +20,16 @@ export function useResumeEffect() {
     () => getResumeApi(),
     {
       onSuccess(res) {
-        if (res.data) {
-          setResume({
-            resume: res.data,
-            error: "",
-          });
-        } else {
-          setResume({
-            resume: null,
-            error: "오류 : " + res.err,
-          });
-        }
+        setResume({
+          resume: res,
+          error: "",
+        });
+      },
+      onError(res: Error) {
+        setResume({
+          resume: null,
+          error: "오류 : " + res.message,
+        });
       },
     }
   );

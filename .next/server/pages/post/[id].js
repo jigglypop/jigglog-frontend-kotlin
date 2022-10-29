@@ -628,9 +628,19 @@ function WriteComment({ type  }) {
     const { register , changeRegisterForm , registerform  } = registerActions;
     const { commentLogout  } = userActions;
     const { error , onChangeComment , onSubmitComment , onSubmitRecomment  } = commentActions;
-    const onSubmitRegisterAndComment = async (e)=>{
+    const submitRegisterAndComment = async (e)=>{
         e.preventDefault();
-        await register();
+        if (user.user === null) {
+            await register();
+        }
+        if (type === "comment") {
+            onSubmitComment(e);
+        } else if (type === "recomment") {
+            onSubmitRecomment();
+        }
+    };
+    const submitAndComment = async (e)=>{
+        e.preventDefault();
         if (type === "comment") {
             onSubmitComment(e);
         } else if (type === "recomment") {
@@ -642,7 +652,7 @@ function WriteComment({ type  }) {
         commentLogout();
     };
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_style__WEBPACK_IMPORTED_MODULE_9__/* .WriteCommentDiv */ .D1, {
-        onSubmit: (e)=>onSubmitRegisterAndComment(e),
+        onSubmit: (e)=>user.user ? submitAndComment(e) : submitRegisterAndComment(e),
         children: [
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_style__WEBPACK_IMPORTED_MODULE_9__/* .LeftDiv */ .sL, {
                 children: user.user ? /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_style__WEBPACK_IMPORTED_MODULE_9__/* .UserDiv */ .eH, {
@@ -1661,7 +1671,7 @@ var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_sto
 
 function PostPage({ id  }) {
     const { getComments  } = (0,_store_comment_query__WEBPACK_IMPORTED_MODULE_5__/* .useCommentActions */ .K)();
-    const { postData , isSuccess , isLoading  } = (0,_store_post_query__WEBPACK_IMPORTED_MODULE_2__/* .usePostEffect */ .Y)(id);
+    const { postData , isSuccess , isLoading , error  } = (0,_store_post_query__WEBPACK_IMPORTED_MODULE_2__/* .usePostEffect */ .Y)(id);
     const [post] = (0,jotai__WEBPACK_IMPORTED_MODULE_12__.useAtom)(_store_post_atom__WEBPACK_IMPORTED_MODULE_13__/* .postAtom */ .a);
     (0,_store_comment_query__WEBPACK_IMPORTED_MODULE_5__/* .useCommentEffect */ .j)(getComments, postData);
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_components_post_style__WEBPACK_IMPORTED_MODULE_4__/* .PostPage */ .s6, {
@@ -1669,15 +1679,15 @@ function PostPage({ id  }) {
             isSuccess && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
                 children: [
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_common_meta_Meta__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z, {
-                        description: postData?.data?.title + " | " + postData?.data?.summary
+                        description: postData?.title + " | " + postData?.summary
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_post_Post__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z, {
-                        post: postData.data
+                        post: postData
                     })
                 ]
             }),
             isLoading && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_common_spinner_Spinner__WEBPACK_IMPORTED_MODULE_10__/* ["default"] */ .Z, {}),
-            post.post === null && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_common_notfound_NotFound__WEBPACK_IMPORTED_MODULE_11__/* ["default"] */ .Z, {
+            error && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_common_notfound_NotFound__WEBPACK_IMPORTED_MODULE_11__/* ["default"] */ .Z, {
                 error: post.error
             })
         ]
@@ -1786,9 +1796,7 @@ function useCommentActions() {
         onSuccess (res) {
             setComments({
                 error: "",
-                comments: [
-                    ...res.data.data
-                ]
+                comments: res
             });
         },
         onError (res) {
@@ -1878,8 +1886,8 @@ function useCommentEffect(getComments, post) {
     const setComments = (0,jotai_utils__WEBPACK_IMPORTED_MODULE_7__.useResetAtom)(_atom__WEBPACK_IMPORTED_MODULE_8__/* .commentsAtom */ .SY);
     const setOpenId = (0,jotai_utils__WEBPACK_IMPORTED_MODULE_7__.useResetAtom)(_atom__WEBPACK_IMPORTED_MODULE_8__/* .commentsOpenAtom */ .Ln);
     (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(()=>{
-        if (post && post.data && post.data.data) {
-            getComments(post.data.data.id);
+        if (post) {
+            getComments(post.id);
         }
     }, [
         post
@@ -2238,7 +2246,7 @@ module.exports = import("remark-gfm");;
 var __webpack_require__ = require("../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [676,664,42,930,874,686,240,703,16,235,853], () => (__webpack_exec__(9034)));
+var __webpack_exports__ = __webpack_require__.X(0, [676,664,425,930,874,195,240,703,16,235,853], () => (__webpack_exec__(9034)));
 module.exports = __webpack_exports__;
 
 })();

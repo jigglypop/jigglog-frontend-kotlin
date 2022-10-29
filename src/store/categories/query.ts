@@ -3,7 +3,6 @@ import { useMutation, useQuery } from "react-query";
 import { getCategoriesApi } from "../../api/Category";
 import { categoriesAtom } from "./atom";
 import { useEffect } from "react";
-import { ICategoryHeader } from "../../type/category";
 
 export function useCategoriesActions() {
   const [categories, setCategories] = useAtom(categoriesAtom);
@@ -11,11 +10,13 @@ export function useCategoriesActions() {
     onSuccess(res) {
       setCategories({
         ...categories,
-        categories: res.data.data.filter((category: ICategoryHeader) => {
-          if (category.id !== 1 && category.posts !== 0) {
-            return category;
-          }
-        }),
+        categories: res,
+      });
+    },
+    onError(res: Error) {
+      setCategories({
+        ...categories,
+        error: "오류 : " + res.message,
       });
     },
   });
@@ -31,12 +32,7 @@ export function useCategoriesEffect() {
   useEffect(() => {
     setCategories({
       error: error ? error.toString() : "",
-      categories:
-        data?.data.filter((category: ICategoryHeader) => {
-          if (category.id !== 1 && category.posts !== 0) {
-            return category;
-          }
-        }) || [],
+      categories: data || [],
     });
   }, [data, isLoading, isError]);
   return { categories: data?.data || [], isLoading, isError, error };

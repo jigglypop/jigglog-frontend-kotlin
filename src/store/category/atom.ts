@@ -5,5 +5,6 @@ export const categoryAtom = atom<ICategoryAtom>({
   posts: [],
   page: 0,
   last: 0,
+  error: "",
 });
 categoryAtom.debugLabel = "category";

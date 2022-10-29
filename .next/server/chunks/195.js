@@ -1,28 +1,7 @@
 "use strict";
-exports.id = 686;
-exports.ids = [686];
+exports.id = 195;
+exports.ids = [195];
 exports.modules = {
-
-/***/ 5425:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "B": () => (/* binding */ getCategoriesApi),
-/* harmony export */   "e": () => (/* binding */ getCategoryApi)
-/* harmony export */ });
-/* harmony import */ var _constants_URL__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5539);
-/* harmony import */ var _methods__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2131);
-
-
-const getCategoriesApi = async ()=>{
-    return await (0,_methods__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)().get(`${_constants_URL__WEBPACK_IMPORTED_MODULE_0__/* .SERVER_URL */ .LB}/category`);
-};
-const getCategoryApi = async (id, page)=>{
-    return await (0,_methods__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)().get(`${_constants_URL__WEBPACK_IMPORTED_MODULE_0__/* .SERVER_URL */ .LB}/category/${id}` + `/?page=${page}`);
-};
-
-
-/***/ }),
 
 /***/ 195:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {

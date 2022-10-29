@@ -1,5 +1,5 @@
 import { useAtom } from "jotai";
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { getTagApi } from "../../api/Tag";
 import { TagAtom } from "./atom";
 
@@ -7,16 +7,41 @@ export const useTagEffect = (id) => {
   const [postsAndLength, setPostsAndLength] = useAtom(TagAtom);
   const { isSuccess, isLoading, isError, error } = useQuery(
     ["tag", id],
-    () => getTagApi(id),
+    () => getTagApi(id, 1),
     {
-      onSuccess(result) {
-        if (result.data && result.data.data) {
-          setPostsAndLength({
-            posts: result.data.data,
-            page: 1,
-            last: Math.ceil(result.data.data[0].postcount / 8),
-          });
-        }
+      onSuccess(res) {
+        setPostsAndLength({
+          posts: res,
+          page: 1,
+          last: Math.ceil(res[0].postcount / 8),
+          error: "",
+        });
+      },
+      onError(res: Error) {
+        setPostsAndLength({
+          ...postsAndLength,
+          error: "오류 : " + res.message,
+        });
+      },
+    }
+  );
+
+  const { mutate: fetchCategory, isLoading: isFetchLoading } = useMutation(
+    () => getTagApi(id, postsAndLength.page + 1),
+    {
+      onSuccess(res) {
+        setPostsAndLength({
+          posts: [...postsAndLength.posts, ...res],
+          page: postsAndLength.page + 1,
+          last: postsAndLength.last,
+          error: "",
+        });
+      },
+      onError(res: Error) {
+        setPostsAndLength({
+          ...postsAndLength,
+          error: "오류 : " + res.message,
+        });
       },
     }
   );
@@ -24,16 +49,8 @@ export const useTagEffect = (id) => {
   const getMorePost = async () => {
     const { page, last } = postsAndLength;
     if (page + 1 <= last) {
-      const TagResponse = await getTagApi(id);
-      if (TagResponse.status === 200) {
-        await setPostsAndLength({
-          posts: [...postsAndLength.posts, ...TagResponse.data.data],
-          page: postsAndLength.page + 1,
-          last: postsAndLength.last,
-        });
-      }
+      fetchCategory();
     }
   };
-
   return { postsAndLength, getMorePost, isSuccess, isLoading, isError, error };
 };

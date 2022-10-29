@@ -14,8 +14,8 @@ export const postWriteApi = async (body) => {
   return await Api().postToken<IWrite>(`${SERVER_URL}/post`, body);
 };
 
-export const putUpdateApi = async (id: number, body) => {
-  return await Api().putToken<IWrite>(`${SERVER_URL}/post/${id}`, body);
+export const patchUpdateApi = async (id: number, body) => {
+  return await Api().patchToken<IWrite>(`${SERVER_URL}/post/${id}`, body);
 };
 
 export const deletePostApi = async (body: IDeleteAtom) => {
@@ -23,5 +23,5 @@ export const deletePostApi = async (body: IDeleteAtom) => {
 };
 
 export const uploadApi = async (body) => {
-  return await Api().post<IWrite>(`${SERVER_URL}/upload`, body);
+  return await Api().postUpload<IWrite>(`${SERVER_URL}/upload`, body);
 };

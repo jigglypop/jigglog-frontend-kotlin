@@ -5,7 +5,7 @@ export type IForm = {
   images: string;
   user: string;
   category_title: string;
-  tags: string[];
+  tags: string;
 };
 
 export type IWriteFormAtom = IForm;

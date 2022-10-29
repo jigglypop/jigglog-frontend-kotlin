@@ -32,11 +32,11 @@ const postRegisterApi = async (body)=>{
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "$p": () => (/* binding */ putUpdateApi),
 /* harmony export */   "MZ": () => (/* binding */ getPostApi),
 /* harmony export */   "Vu": () => (/* binding */ deletePostApi),
 /* harmony export */   "aq": () => (/* binding */ uploadApi),
-/* harmony export */   "ih": () => (/* binding */ postWriteApi)
+/* harmony export */   "ih": () => (/* binding */ postWriteApi),
+/* harmony export */   "rX": () => (/* binding */ patchUpdateApi)
 /* harmony export */ });
 /* unused harmony export getPostsApi */
 /* harmony import */ var _constants_URL__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5539);
@@ -52,14 +52,14 @@ const getPostApi = async (id)=>{
 const postWriteApi = async (body)=>{
     return await (0,_methods__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)().postToken(`${_constants_URL__WEBPACK_IMPORTED_MODULE_0__/* .SERVER_URL */ .LB}/post`, body);
 };
-const putUpdateApi = async (id, body)=>{
-    return await (0,_methods__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)().putToken(`${_constants_URL__WEBPACK_IMPORTED_MODULE_0__/* .SERVER_URL */ .LB}/post/${id}`, body);
+const patchUpdateApi = async (id, body)=>{
+    return await (0,_methods__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)().patchToken(`${_constants_URL__WEBPACK_IMPORTED_MODULE_0__/* .SERVER_URL */ .LB}/post/${id}`, body);
 };
 const deletePostApi = async (body)=>{
     return await (0,_methods__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)().deleteToken(`${_constants_URL__WEBPACK_IMPORTED_MODULE_0__/* .SERVER_URL */ .LB}/post/${body.id}`);
 };
 const uploadApi = async (body)=>{
-    return await (0,_methods__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)().post(`${_constants_URL__WEBPACK_IMPORTED_MODULE_0__/* .SERVER_URL */ .LB}/upload`, body);
+    return await (0,_methods__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)().postUpload(`${_constants_URL__WEBPACK_IMPORTED_MODULE_0__/* .SERVER_URL */ .LB}/upload`, body);
 };
 
 

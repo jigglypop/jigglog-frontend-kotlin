@@ -29,7 +29,7 @@ const Comments = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().div)`
   margin-bottom: 20vh;
 `;
 const Post = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().div)`
-  position: relative;
+  /* position: relative; */
   font-size: 160%;
   width: 100%;
   height: 100%;

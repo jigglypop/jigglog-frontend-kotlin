@@ -14,7 +14,7 @@ export const Comments = styled.div`
 `;
 
 export const Post = styled.div`
-  position: relative;
+  /* position: relative; */
   font-size: 160%;
   width: 100%;
   height: 100%;

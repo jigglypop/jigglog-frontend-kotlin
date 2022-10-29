@@ -328,7 +328,7 @@ function PostItem_PostItem({ post  }) {
                         }),
                         /*#__PURE__*/ jsx_runtime_.jsx("p", {
                             className: "under-text",
-                            children: post.comments?.length
+                            children: post.commentcount
                         }),
                         /*#__PURE__*/ jsx_runtime_.jsx(ai_.AiFillEye, {
                             className: "under-item"

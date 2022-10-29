@@ -16,9 +16,9 @@ function UpdatePage({ id }) {
   const [post] = useAtom(postAtom);
   return (
     <div>
-      {isSuccess && postData.data && (
+      {isSuccess && postData && (
         <>
-          <Meta description={"업데이트 | " + postData.data?.data.title} />
+          <Meta description={"업데이트 | " + postData.data?.title} />
           <Write />
         </>
       )}

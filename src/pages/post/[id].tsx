@@ -15,23 +15,19 @@ import { postAtom } from "../../store/post/atom";
 
 function PostPage({ id }) {
   const { getComments } = useCommentActions();
-  const { postData, isSuccess, isLoading } = usePostEffect(id);
+  const { postData, isSuccess, isLoading, error } = usePostEffect(id);
   const [post] = useAtom(postAtom);
   useCommentEffect(getComments, postData);
   return (
     <S.PostPage>
       {isSuccess && (
         <>
-          <Meta
-            description={
-              postData?.data?.title + " | " + postData?.data?.summary
-            }
-          />
-          <Post post={postData.data} />
+          <Meta description={postData?.title + " | " + postData?.summary} />
+          <Post post={postData} />
         </>
       )}
       {isLoading && <Spinner />}
-      {post.post === null && <NotFound error={post.error} />}
+      {error && <NotFound error={post.error} />}
     </S.PostPage>
   );
 }

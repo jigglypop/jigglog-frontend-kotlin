@@ -29,17 +29,16 @@ const usePostEffect = (id)=>{
     ], ()=>(0,_api_Post__WEBPACK_IMPORTED_MODULE_2__/* .getPostApi */ .MZ)(id), {
         staleTime: 1000,
         onSuccess (res) {
-            if (res.data) {
-                setPost({
-                    post: res.data,
-                    error: ""
-                });
-            } else {
-                setPost({
-                    post: null,
-                    error: "오류 : " + res.err
-                });
-            }
+            setPost({
+                post: res,
+                error: ""
+            });
+        },
+        onError (res) {
+            setPost({
+                post: null,
+                error: "오류 : " + res.message
+            });
         }
     });
     return {

@@ -27,10 +27,10 @@ export function useCommentActions() {
     onSuccess(res) {
       setComments({
         error: "",
-        comments: [...res.data.data],
+        comments: res,
       });
     },
-    onError(res: { message: string }) {
+    onError(res: Error) {
       setComments({
         ...comments,
         error: res.message,
@@ -147,8 +147,8 @@ export function useCommentEffect(
     commentsOpenAtom as unknown as WritableAtom<ICommentsOpenAtom, symbol, void>
   );
   useEffect(() => {
-    if (post && post.data && post.data.data) {
-      getComments(post.data.data.id);
+    if (post) {
+      getComments(post.id);
     }
   }, [post]);
 

@@ -5,6 +5,6 @@ export const getTagsApi = async () => {
   return await Api().get(`${SERVER_URL}/tag`);
 };
 
-export const getTagApi = async (id: string) => {
-  return await Api().get(`${SERVER_URL}/tag/${id}` + `/?page=1`);
+export const getTagApi = async (id: string, page: number = 1) => {
+  return await Api().get(`${SERVER_URL}/tag/${id}` + `/?page=${page}`);
 };

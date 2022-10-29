@@ -18,9 +18,20 @@ export default function WriteComment({ type }: { type: string }) {
   const { error, onChangeComment, onSubmitComment, onSubmitRecomment } =
     commentActions;
 
-  const onSubmitRegisterAndComment = async (e) => {
+  const submitRegisterAndComment = async (e) => {
     e.preventDefault();
-    await register();
+    if (user.user === null) {
+      await register();
+    }
+    if (type === "comment") {
+      onSubmitComment(e);
+    } else if (type === "recomment") {
+      onSubmitRecomment();
+    }
+  };
+
+  const submitAndComment = async (e) => {
+    e.preventDefault();
     if (type === "comment") {
       onSubmitComment(e);
     } else if (type === "recomment") {
@@ -34,7 +45,11 @@ export default function WriteComment({ type }: { type: string }) {
   };
 
   return (
-    <S.WriteCommentDiv onSubmit={(e) => onSubmitRegisterAndComment(e)}>
+    <S.WriteCommentDiv
+      onSubmit={(e) =>
+        user.user ? submitAndComment(e) : submitRegisterAndComment(e)
+      }
+    >
       <S.LeftDiv>
         {user.user ? (
           <S.UserDiv>

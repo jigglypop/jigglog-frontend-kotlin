@@ -3,28 +3,28 @@ import { useQuery } from "react-query";
 import { getPortfoliosApi } from "../../api/Portfolio";
 import { portfoliosAtom } from "./atom";
 
-export function usePortfoliosActions() {
-  const [portfolios, setPortfolios] = useAtom(portfoliosAtom);
+// export function usePortfoliosActions() {
+//   const [portfolios, setPortfolios] = useAtom(portfoliosAtom);
 
-  const getPortfolios = async () => {
-    const portfoliosResponse = await getPortfoliosApi();
-    if (portfoliosResponse.status === 200) {
-      await setPortfolios({
-        error: "",
-        portfolios: portfoliosResponse.data.data,
-      });
-    } else {
-      await setPortfolios({
-        ...portfolios,
-        error: portfoliosResponse.err,
-      });
-    }
-  };
+//   const getPortfolios = async () => {
+//     const portfoliosResponse = await getPortfoliosApi();
+//     if (portfoliosResponse.status === 200) {
+//       await setPortfolios({
+//         error: "",
+//         portfolios: portfoliosResponse.data.data,
+//       });
+//     } else {
+//       await setPortfolios({
+//         ...portfolios,
+//         error: portfoliosResponse.err,
+//       });
+//     }
+//   };
 
-  return {
-    getPortfolios,
-  };
-}
+//   return {
+//     getPortfolios,
+//   };
+// }
 
 export const usePortfoliosEffect = () => {
   const [portfolios, setPortfolios] = useAtom(portfoliosAtom);
@@ -33,14 +33,12 @@ export const usePortfoliosEffect = () => {
     getPortfoliosApi,
     {
       onSuccess(res) {
-        if (res.data) {
-          setPortfolios({
-            portfolios: res.data.data,
-            error: "",
-          });
-        }
+        setPortfolios({
+          portfolios: res,
+          error: "",
+        });
       },
-      onError(res: { message: string }) {
+      onError(res: Error) {
         setPortfolios({
           portfolios: [],
           error: "오류 : " + res.message,

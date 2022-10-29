@@ -4,24 +4,20 @@ import { useQuery } from "react-query";
 import { getPortfolioApi } from "../../api/Portfolio";
 import { portfolioAtom } from "./atom";
 
-export const usePortfolioEffect = () => {
+export const usePortfolioEffect = (id: string) => {
   const [portfolio, setPortfolio] = useAtom(portfolioAtom);
-  const router = useRouter();
-  const { id } = router.query;
-  const { isSuccess, isLoading, isError, error } = useQuery(
+  const { data, isSuccess, isLoading, isError, error } = useQuery(
     "portfolio",
-    () => getPortfolioApi(parseInt(id as string)),
+    () => getPortfolioApi(id),
     {
-      staleTime: 1000,
+      // staleTime: 1000,
       onSuccess(res) {
-        if (res.data) {
-          setPortfolio({
-            portfolio: res.data.data,
-            error: "",
-          });
-        }
+        setPortfolio({
+          portfolio: res,
+          error: "",
+        });
       },
-      onError(res: { message: string }) {
+      onError(res: Error) {
         setPortfolio({
           portfolio: null,
           error: "오류 : " + res.message,
@@ -29,5 +25,5 @@ export const usePortfolioEffect = () => {
       },
     }
   );
-  return { portfolio, isSuccess, isLoading, isError, error };
+  return { portfolio: data, isSuccess, isLoading, isError, error };
 };

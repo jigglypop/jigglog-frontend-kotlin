@@ -8,7 +8,7 @@ export const writeFormAtom = atom<IWriteFormAtom>({
   images: "",
   user: "",
   category_title: "",
-  tags: [],
+  tags: "",
 });
 writeFormAtom.debugLabel = "write";
 

@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useUpdateAtom } from "jotai/utils";
 import { useQuery } from "react-query";
 import { getPostApi } from "../../api/Post";
@@ -12,17 +11,16 @@ export const usePostEffect = (id: string) => {
     {
       staleTime: 1000,
       onSuccess(res) {
-        if (res.data) {
-          setPost({
-            post: res.data,
-            error: "",
-          });
-        } else {
-          setPost({
-            post: null,
-            error: "오류 : " + res.err,
-          });
-        }
+        setPost({
+          post: res,
+          error: "",
+        });
+      },
+      onError(res: Error) {
+        setPost({
+          post: null,
+          error: "오류 : " + res.message,
+        });
       },
     }
   );

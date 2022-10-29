@@ -5,27 +5,6 @@ exports.id = 270;
 exports.ids = [270];
 exports.modules = {
 
-/***/ 5425:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "B": () => (/* binding */ getCategoriesApi),
-/* harmony export */   "e": () => (/* binding */ getCategoryApi)
-/* harmony export */ });
-/* harmony import */ var _constants_URL__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5539);
-/* harmony import */ var _methods__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2131);
-
-
-const getCategoriesApi = async ()=>{
-    return await (0,_methods__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)().get(`${_constants_URL__WEBPACK_IMPORTED_MODULE_0__/* .SERVER_URL */ .LB}/category`);
-};
-const getCategoryApi = async (id, page)=>{
-    return await (0,_methods__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)().get(`${_constants_URL__WEBPACK_IMPORTED_MODULE_0__/* .SERVER_URL */ .LB}/category/${id}` + `/?page=${page}`);
-};
-
-
-/***/ }),
-
 /***/ 6705:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -117,9 +96,9 @@ const Portfolios = ()=>{
         router.push(`/portfolio/${index}`);
     };
     (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(()=>{
-        (0,_util_JQuery__WEBPACK_IMPORTED_MODULE_9__.$)("body").css("overflow", "hidden");
+        (0,_util_JQuery__WEBPACK_IMPORTED_MODULE_9__.$)("html").css("overflow", "hidden");
         return ()=>{
-            (0,_util_JQuery__WEBPACK_IMPORTED_MODULE_9__.$)("body").css("overflow", "scroll");
+            (0,_util_JQuery__WEBPACK_IMPORTED_MODULE_9__.$)("html").css("overflow", "scroll");
         };
     }, []);
     return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
@@ -453,7 +432,6 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "L": () => (/* binding */ usePortfoliosEffect)
 /* harmony export */ });
-/* unused harmony export usePortfoliosActions */
 /* harmony import */ var jotai__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2451);
 /* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1175);
 /* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_query__WEBPACK_IMPORTED_MODULE_1__);
@@ -465,36 +443,34 @@ var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([jota
 
 
 
-function usePortfoliosActions() {
-    const [portfolios, setPortfolios] = useAtom(portfoliosAtom);
-    const getPortfolios = async ()=>{
-        const portfoliosResponse = await getPortfoliosApi();
-        if (portfoliosResponse.status === 200) {
-            await setPortfolios({
-                error: "",
-                portfolios: portfoliosResponse.data.data
-            });
-        } else {
-            await setPortfolios({
-                ...portfolios,
-                error: portfoliosResponse.err
-            });
-        }
-    };
-    return {
-        getPortfolios
-    };
-}
+// export function usePortfoliosActions() {
+//   const [portfolios, setPortfolios] = useAtom(portfoliosAtom);
+//   const getPortfolios = async () => {
+//     const portfoliosResponse = await getPortfoliosApi();
+//     if (portfoliosResponse.status === 200) {
+//       await setPortfolios({
+//         error: "",
+//         portfolios: portfoliosResponse.data.data,
+//       });
+//     } else {
+//       await setPortfolios({
+//         ...portfolios,
+//         error: portfoliosResponse.err,
+//       });
+//     }
+//   };
+//   return {
+//     getPortfolios,
+//   };
+// }
 const usePortfoliosEffect = ()=>{
     const [portfolios, setPortfolios] = (0,jotai__WEBPACK_IMPORTED_MODULE_0__.useAtom)(_atom__WEBPACK_IMPORTED_MODULE_3__/* .portfoliosAtom */ .e);
     const { isSuccess , isLoading , isError , error  } = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useQuery)("portfolios", _api_Portfolio__WEBPACK_IMPORTED_MODULE_2__/* .getPortfoliosApi */ .j, {
         onSuccess (res) {
-            if (res.data) {
-                setPortfolios({
-                    portfolios: res.data.data,
-                    error: ""
-                });
-            }
+            setPortfolios({
+                portfolios: res,
+                error: ""
+            });
         },
         onError (res) {
             setPortfolios({
@@ -784,7 +760,7 @@ module.exports = import("jotai");;
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [676,664,42,930,703], () => (__webpack_exec__(2670)));
+var __webpack_exports__ = __webpack_require__.X(0, [676,664,425,930,703], () => (__webpack_exec__(2670)));
 module.exports = __webpack_exports__;
 
 })();

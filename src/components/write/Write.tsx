@@ -4,7 +4,7 @@ import * as S from "./style";
 import dynamic from "next/dynamic";
 import { BoxInput } from "../common/input/BoxInput";
 import { useWriteActions } from "../../store/write/Write";
-import { putUpdateApi, uploadApi } from "../../api/Post";
+import { patchUpdateApi, uploadApi } from "../../api/Post";
 import { GradientButton } from "../common/button/GradientButton";
 import { useRouter } from "next/router";
 import Markdown from "../post/Markdown/Markdown";
@@ -28,7 +28,7 @@ export default function Write() {
   const {
     writeform,
     resetWriteForm,
-    changeTags,
+    // changeTags,
     changeform,
     changeformAndName,
     changeforms,
@@ -75,14 +75,17 @@ export default function Write() {
   const uploadNameRef = useRef<HTMLInputElement>(null);
   // usemutation
   const { mutate: writeSubmit } = useMutation(writeApi, {
-    onSuccess(data) {
+    onSuccess(res) {
       getCategories();
-      router.push(`/post/${data.data.id}`).then(() => createToast("글쓰기"));
+      router.push(`/post/${res.id}`).then(() => createToast("글쓰기"));
+    },
+    onError(err: Error) {
+      console.log(err);
     },
   });
   const { mutate: updateSubmit } = useMutation(
     () =>
-      putUpdateApi(writeUpdateType.id, {
+      patchUpdateApi(writeUpdateType.id, {
         title: writeform.title,
         summary: writeform.summary,
         content: writeform.content,
@@ -98,8 +101,8 @@ export default function Write() {
   );
   const uploadMutaion = useMutation(uploadApi, {
     onSuccess(data) {
-      changeformAndName(data.data.data.location, "images");
-      uploadNameRef.current.value = data.data.data.originalname;
+      changeformAndName(data.data.location, "images");
+      uploadNameRef.current.value = data.data.originalname;
     },
   });
 
@@ -178,7 +181,9 @@ export default function Write() {
         {writeUpdateType.type === "write" && (
           <BoxInput
             placeholder={"태그 입력 (#으로 분리)"}
-            onChange={changeTags}
+            name={"tags"}
+            value={writeform.tags}
+            onChange={changeform}
           />
         )}
         {writeUpdateType.type === "write" && (
@@ -211,8 +216,6 @@ export default function Write() {
         >
           <p>제출하기</p>
         </GradientButton>
-        {/* <h4>{writeMutaion.error}</h4>
-        {writeMutaion.isLoading && <h1>잠시만 기다려주세요</h1>} */}
       </S.EditorStyle>
       {visibleMD && (
         <S.WriteMarkdown>

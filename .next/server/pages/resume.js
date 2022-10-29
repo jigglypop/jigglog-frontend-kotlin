@@ -123,13 +123,13 @@ function ResumePage() {
     const { resume , isSuccess , isLoading , isError  } = (0,_store_resume_query__WEBPACK_IMPORTED_MODULE_9__/* .useResumeEffect */ .S)();
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
         children: [
-            isSuccess && resume.data && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+            isSuccess && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
                 children: [
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_common_meta_Meta__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z, {
                         description: "이력서"
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_resume_portfolio_resume__WEBPACK_IMPORTED_MODULE_8__/* ["default"] */ .Z, {
-                        resume: resume.data
+                        resume: resume
                     })
                 ]
             }),
@@ -214,17 +214,16 @@ function useResumeEffect() {
         "resume"
     ], ()=>(0,_api_Resume__WEBPACK_IMPORTED_MODULE_3__/* .getResumeApi */ .V)(), {
         onSuccess (res) {
-            if (res.data) {
-                setResume({
-                    resume: res.data,
-                    error: ""
-                });
-            } else {
-                setResume({
-                    resume: null,
-                    error: "오류 : " + res.err
-                });
-            }
+            setResume({
+                resume: res,
+                error: ""
+            });
+        },
+        onError (res) {
+            setResume({
+                resume: null,
+                error: "오류 : " + res.message
+            });
         }
     });
     return {
@@ -368,7 +367,7 @@ module.exports = import("remark-gfm");;
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [42,930,874,686,430], () => (__webpack_exec__(4012)));
+var __webpack_exports__ = __webpack_require__.X(0, [425,930,874,195,430], () => (__webpack_exec__(4012)));
 module.exports = __webpack_exports__;
 
 })();

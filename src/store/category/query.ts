@@ -9,14 +9,19 @@ export const useCategoryEffect = (id) => {
     ["category", id],
     () => getCategoryApi(id, 1),
     {
-      onSuccess(result) {
-        if (result.data && result.data.data) {
-          setPostsAndLength({
-            posts: result.data.data,
-            page: 1,
-            last: Math.ceil(result.data.data[0].postcount / 8),
-          });
-        }
+      onSuccess(res) {
+        setPostsAndLength({
+          posts: res,
+          page: 1,
+          last: Math.ceil(res[0].postcount / 8),
+          error: "",
+        });
+      },
+      onError(res: Error) {
+        setPostsAndLength({
+          ...postsAndLength,
+          error: "오류 : " + res.message,
+        });
       },
     }
   );
@@ -26,9 +31,16 @@ export const useCategoryEffect = (id) => {
     {
       onSuccess(res) {
         setPostsAndLength({
-          posts: [...postsAndLength.posts, ...res.data.data],
+          posts: [...postsAndLength.posts, ...res],
           page: postsAndLength.page + 1,
           last: postsAndLength.last,
+          error: "",
+        });
+      },
+      onError(res: Error) {
+        setPostsAndLength({
+          ...postsAndLength,
+          error: "오류 : " + res.message,
         });
       },
     }

@@ -19,9 +19,9 @@ const Portfolios = () => {
   };
 
   useEffect(() => {
-    $("body").css("overflow", "hidden");
+    $("html").css("overflow", "hidden");
     return () => {
-      $("body").css("overflow", "scroll");
+      $("html").css("overflow", "scroll");
     };
   }, []);
   return (

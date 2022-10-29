@@ -4,4 +4,5 @@ export type ITagAtom = {
   posts: IPost[];
   page: number;
   last: number;
+  error: string;
 };
