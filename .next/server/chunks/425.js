@@ -137,7 +137,6 @@ function Api() {
 /* harmony export */   "LB": () => (/* binding */ SERVER_URL)
 /* harmony export */ });
 /* unused harmony exports BASE_URL, LOCAL_URL, MAIN_URL */
-// export const BASE_URL = "https://moija.link";
 const BASE_URL = "https://jigglog.com";
 // export const BASE_URL = "http://localhost:8080";
 const S3_URL = "https://jiggloghttps.s3.ap-northeast-2.amazonaws.com/gltf";

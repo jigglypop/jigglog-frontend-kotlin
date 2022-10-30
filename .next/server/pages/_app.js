@@ -164,81 +164,79 @@ __webpack_async_result__();
 
 
 const Auth = styled_components__WEBPACK_IMPORTED_MODULE_0___default()(_style_default__WEBPACK_IMPORTED_MODULE_1__/* .FlexCenter */ .L)`
-    width: 450px;
-    height: 500px;
-    background-color: rgba(0, 0, 0, 0.4);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    border-radius: 2rem;
-    position: relative;
-    color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0);
+  width: 450px;
+  height: 500px;
+  background-color: rgba(0, 0, 0, 0.4);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: 2rem;
+  position: relative;
+  color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0);
+  flex-direction: column;
+  z-index: 10;
+
+  input[type="password"] {
+    font-family: "Malgun gothic", dotum, sans-serif;
+
+    &::placeholder {
+      font-family: "NanumSquareL", sans-serif;
+      color: white;
+      opacity: 1;
+    }
+  }
+
+  .login-text {
+    font-size: 6rem;
+    font-weight: 800;
+    margin: 0;
+  }
+
+  form {
     flex-direction: column;
-    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-    input[type=password] {
-        font-family:'Malgun gothic', dotum, sans-serif;
+  .close {
+    color: #c6ffdd;
+    background-color: transparent;
+    font-size: 2.5rem;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+  }
 
-        &::placeholder { 
-            font-family: 'NanumSquareL', sans-serif; 
-            color: white;
-            opacity: 1;
-        } 
-    }
+  .error {
+    margin-top: 2rem;
+    color: #ffb3b3;
+    font-size: 1.2rem;
+    font-weight: 800;
+  }
 
-    .login-text {
-        font-size: 6rem;
-        font-weight: 800;
-        margin: 0;
-    }
-
-    form {
-        flex-direction: column;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .close {
-        color: #C6FFDD;
-        background-color: transparent;
-        font-size: 2.5rem;
-        position: absolute;
-        top: 2rem;
-        right: 2rem;
-    }
-
-    .error {
-        margin-top: 2rem;
-        color: #ffb3b3;
-        font-size: 1.2rem;
-        font-weight: 800;
-    }
-
-    .toggle {
-        margin-top: 2rem;
-        color: #b8a8ff;
-        font-size: 1.2rem;
-        font-weight: 800;
-    }
+  .toggle {
+    margin-top: 2rem;
+    color: #b8a8ff;
+    font-size: 1.2rem;
+    font-weight: 800;
+  }
 `;
 const KaKao = styled_components__WEBPACK_IMPORTED_MODULE_0___default()(_style_default__WEBPACK_IMPORTED_MODULE_1__/* .FlexCenter */ .L)`
-    width: 4rem;
-    height: 4rem;
-    background-color: var(--yellow);
-    border-radius: 50%;
-    box-shadow: 0 0 10px #1d1d1d;
-    color: black;
-    font-size: 2.5rem;
-    cursor: pointer;
-    transition: all 0.3s ease-in;
-    z-index: 1;
+  width: 4rem;
+  height: 4rem;
+  background-color: var(--yellow);
+  border-radius: 50%;
+  box-shadow: 0 0 10px #1d1d1d;
+  color: black;
+  font-size: 2.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+  z-index: 1;
 
-    &:hover {
-        box-shadow: 0 0 20px #1d1d1d;
-    }
-
-
+  &:hover {
+    box-shadow: 0 0 20px #1d1d1d;
+  }
 `;
 
 
@@ -1235,112 +1233,6 @@ __webpack_async_result__();
 
 /***/ }),
 
-/***/ 1518:
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "n": () => (/* binding */ loginFormAtom)
-/* harmony export */ });
-/* harmony import */ var jotai__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2451);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([jotai__WEBPACK_IMPORTED_MODULE_0__]);
-jotai__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
-
-const loginFormAtom = (0,jotai__WEBPACK_IMPORTED_MODULE_0__.atom)({
-    username: "",
-    password: ""
-});
-loginFormAtom.debugLabel = "login";
-
-__webpack_async_result__();
-} catch(e) { __webpack_async_result__(e); } });
-
-/***/ }),
-
-/***/ 4802:
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "c": () => (/* binding */ useLoginActions)
-/* harmony export */ });
-/* harmony import */ var _api_Auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2361);
-/* harmony import */ var _util_toast__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(7226);
-/* harmony import */ var _modal_atom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6406);
-/* harmony import */ var jotai__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2451);
-/* harmony import */ var _atom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1518);
-/* harmony import */ var _user_atom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(15);
-/* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(1175);
-/* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_query__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var jotai_utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(2752);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_modal_atom__WEBPACK_IMPORTED_MODULE_1__, jotai__WEBPACK_IMPORTED_MODULE_2__, _atom__WEBPACK_IMPORTED_MODULE_3__, _user_atom__WEBPACK_IMPORTED_MODULE_4__, jotai_utils__WEBPACK_IMPORTED_MODULE_6__]);
-([_modal_atom__WEBPACK_IMPORTED_MODULE_1__, jotai__WEBPACK_IMPORTED_MODULE_2__, _atom__WEBPACK_IMPORTED_MODULE_3__, _user_atom__WEBPACK_IMPORTED_MODULE_4__, jotai_utils__WEBPACK_IMPORTED_MODULE_6__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
-
-
-
-
-
-
-
-
-function useLoginActions() {
-    const setModal = (0,jotai_utils__WEBPACK_IMPORTED_MODULE_6__.useUpdateAtom)(_modal_atom__WEBPACK_IMPORTED_MODULE_1__/* .modalAtom */ .h);
-    const [loginform, setLoginForm] = (0,jotai__WEBPACK_IMPORTED_MODULE_2__.useAtom)(_atom__WEBPACK_IMPORTED_MODULE_3__/* .loginFormAtom */ .n);
-    const [user, setUser] = (0,jotai__WEBPACK_IMPORTED_MODULE_2__.useAtom)(_user_atom__WEBPACK_IMPORTED_MODULE_4__/* .userAtom */ .L);
-    const { mutate , isLoading  } = (0,react_query__WEBPACK_IMPORTED_MODULE_5__.useMutation)(_api_Auth__WEBPACK_IMPORTED_MODULE_0__/* .postLoginApi */ .kj, {
-        onSuccess (res) {
-            setUser({
-                error: "",
-                user: {
-                    ...res
-                }
-            });
-            setLoginForm({
-                username: "",
-                password: ""
-            });
-            setModal({
-                on: false,
-                type: ""
-            });
-            (0,_util_toast__WEBPACK_IMPORTED_MODULE_7__/* .createToast */ .Y)("로그인");
-        },
-        onError (res) {
-            setUser({
-                ...user,
-                error: "오류 : " + res.message
-            });
-        }
-    });
-    const changeLoginForm = (e)=>{
-        setLoginForm({
-            ...loginform,
-            [e.target.name]: e.target.value
-        });
-    };
-    const initializeAuth = ()=>{
-        setUser({
-            ...user,
-            error: ""
-        });
-    };
-    const login = async ()=>{
-        mutate(loginform);
-    };
-    return {
-        login,
-        loginform,
-        changeLoginForm,
-        initializeAuth,
-        isLoading
-    };
-}
-
-__webpack_async_result__();
-} catch(e) { __webpack_async_result__(e); } });
-
-/***/ }),
-
 /***/ 9847:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
@@ -1866,7 +1758,7 @@ module.exports = import("jotai/utils");;
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [676,664,425,195,240,703,569,235,191], () => (__webpack_exec__(2957)));
+var __webpack_exports__ = __webpack_require__.X(0, [676,664,425,195,240,703,569,344,191], () => (__webpack_exec__(2957)));
 module.exports = __webpack_exports__;
 
 })();

@@ -5,10 +5,6 @@ export const CommentDiv = styled.div`
   position: relative;
   width: 100%;
   display: grid;
-
-  /* @media (max-width: 992px) {
-    width: 100%;
-  } */
 `;
 // 댓글 위 카운트
 export const CommentCountDiv = styled.div`

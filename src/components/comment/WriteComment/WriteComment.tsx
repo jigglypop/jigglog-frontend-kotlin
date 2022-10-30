@@ -1,6 +1,7 @@
 import { useAtomValue } from "jotai";
 import React from "react";
 import { useCommentActions } from "../../../store/comment/query";
+import { useLoginActions } from "../../../store/login/query";
 import { useRegisterActions } from "../../../store/register/query";
 import { userAtom } from "../../../store/user/atom";
 import { useUserActions } from "../../../store/user/query";
@@ -8,28 +9,23 @@ import Avatar from "../../common/avatar/Avatar";
 import { BlackButton } from "../../common/button/BlackButton";
 import * as S from "./style";
 
-export default function WriteComment({ type }: { type: string }) {
-  const commentActions = useCommentActions();
+export type IWriteComment = {
+  type: string;
+};
+
+export default function WriteComment({ type }: IWriteComment) {
   const user = useAtomValue(userAtom);
-  const registerActions = useRegisterActions();
-  const userActions = useUserActions();
-  const { register, changeRegisterForm, registerform } = registerActions;
-  const { commentLogout } = userActions;
+  const { login, changeLoginForm } = useLoginActions();
+  const { register, changeRegisterForm, registerform } = useRegisterActions();
+  const { commentLogout } = useUserActions();
   const { error, onChangeComment, onSubmitComment, onSubmitRecomment } =
-    commentActions;
+    useCommentActions();
 
-  const submitRegisterAndComment = async (e) => {
+  const onLogout = (e) => {
     e.preventDefault();
-    if (user.user === null) {
-      await register();
-    }
-    if (type === "comment") {
-      onSubmitComment(e);
-    } else if (type === "recomment") {
-      onSubmitRecomment();
-    }
+    commentLogout();
   };
-
+  // 로그인 상태에서 댓글 작성
   const submitAndComment = async (e) => {
     e.preventDefault();
     if (type === "comment") {
@@ -39,10 +35,7 @@ export default function WriteComment({ type }: { type: string }) {
     }
   };
 
-  const onLogout = (e) => {
-    e.preventDefault();
-    commentLogout();
-  };
+  const submitRegisterAndComment = async (e) => {};
 
   return (
     <S.WriteCommentDiv

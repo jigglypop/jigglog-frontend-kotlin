@@ -16,6 +16,7 @@ export const WriteCommentDiv = styled.form`
 export const SmallTextDiv = styled.div`
   display: flex;
   flex-direction: column;
+
   input {
     margin: 0.5rem 0.5rem 0.5rem 0;
     font-size: 1.2rem;
@@ -24,6 +25,17 @@ export const SmallTextDiv = styled.div`
     background-color: white;
     padding: 10px;
     border: none;
+    color: black;
+  }
+
+  input[type="password"] {
+    font-family: "Malgun gothic", dotum, sans-serif;
+
+    &::placeholder {
+      font-family: "NanumSquareL", sans-serif;
+      color: white;
+      opacity: 1;
+    }
   }
 `;
 

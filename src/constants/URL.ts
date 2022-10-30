@@ -1,4 +1,3 @@
-// export const BASE_URL = "https://moija.link";
 export const BASE_URL = "https://jigglog.com";
 // export const BASE_URL = "http://localhost:8080";
 

@@ -123,10 +123,6 @@ const CommentDiv = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().div
   position: relative;
   width: 100%;
   display: grid;
-
-  /* @media (max-width: 992px) {
-    width: 100%;
-  } */
 `;
 // 댓글 위 카운트
 const CommentCountDiv = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().div)`
@@ -602,14 +598,16 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6689);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _store_comment_query__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8650);
-/* harmony import */ var _store_register_query__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(8776);
-/* harmony import */ var _store_user_atom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(15);
-/* harmony import */ var _store_user_query__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(339);
-/* harmony import */ var _common_avatar_Avatar__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(195);
-/* harmony import */ var _common_button_BlackButton__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(8902);
-/* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(6930);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([jotai__WEBPACK_IMPORTED_MODULE_1__, _store_comment_query__WEBPACK_IMPORTED_MODULE_3__, _store_register_query__WEBPACK_IMPORTED_MODULE_4__, _store_user_atom__WEBPACK_IMPORTED_MODULE_5__, _store_user_query__WEBPACK_IMPORTED_MODULE_6__]);
-([jotai__WEBPACK_IMPORTED_MODULE_1__, _store_comment_query__WEBPACK_IMPORTED_MODULE_3__, _store_register_query__WEBPACK_IMPORTED_MODULE_4__, _store_user_atom__WEBPACK_IMPORTED_MODULE_5__, _store_user_query__WEBPACK_IMPORTED_MODULE_6__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+/* harmony import */ var _store_login_query__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(4802);
+/* harmony import */ var _store_register_query__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(8776);
+/* harmony import */ var _store_user_atom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(15);
+/* harmony import */ var _store_user_query__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(339);
+/* harmony import */ var _common_avatar_Avatar__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(195);
+/* harmony import */ var _common_button_BlackButton__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(8902);
+/* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(6930);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([jotai__WEBPACK_IMPORTED_MODULE_1__, _store_comment_query__WEBPACK_IMPORTED_MODULE_3__, _store_login_query__WEBPACK_IMPORTED_MODULE_4__, _store_register_query__WEBPACK_IMPORTED_MODULE_5__, _store_user_atom__WEBPACK_IMPORTED_MODULE_6__, _store_user_query__WEBPACK_IMPORTED_MODULE_7__]);
+([jotai__WEBPACK_IMPORTED_MODULE_1__, _store_comment_query__WEBPACK_IMPORTED_MODULE_3__, _store_login_query__WEBPACK_IMPORTED_MODULE_4__, _store_register_query__WEBPACK_IMPORTED_MODULE_5__, _store_user_atom__WEBPACK_IMPORTED_MODULE_6__, _store_user_query__WEBPACK_IMPORTED_MODULE_7__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+
 
 
 
@@ -621,24 +619,16 @@ var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([jota
 
 
 function WriteComment({ type  }) {
-    const commentActions = (0,_store_comment_query__WEBPACK_IMPORTED_MODULE_3__/* .useCommentActions */ .K)();
-    const user = (0,jotai__WEBPACK_IMPORTED_MODULE_1__.useAtomValue)(_store_user_atom__WEBPACK_IMPORTED_MODULE_5__/* .userAtom */ .L);
-    const registerActions = (0,_store_register_query__WEBPACK_IMPORTED_MODULE_4__/* .useRegisterActions */ .A)();
-    const userActions = (0,_store_user_query__WEBPACK_IMPORTED_MODULE_6__/* .useUserActions */ ._y)();
-    const { register , changeRegisterForm , registerform  } = registerActions;
-    const { commentLogout  } = userActions;
-    const { error , onChangeComment , onSubmitComment , onSubmitRecomment  } = commentActions;
-    const submitRegisterAndComment = async (e)=>{
+    const user = (0,jotai__WEBPACK_IMPORTED_MODULE_1__.useAtomValue)(_store_user_atom__WEBPACK_IMPORTED_MODULE_6__/* .userAtom */ .L);
+    const { login , changeLoginForm  } = (0,_store_login_query__WEBPACK_IMPORTED_MODULE_4__/* .useLoginActions */ .c)();
+    const { register , changeRegisterForm , registerform  } = (0,_store_register_query__WEBPACK_IMPORTED_MODULE_5__/* .useRegisterActions */ .A)();
+    const { commentLogout  } = (0,_store_user_query__WEBPACK_IMPORTED_MODULE_7__/* .useUserActions */ ._y)();
+    const { error , onChangeComment , onSubmitComment , onSubmitRecomment  } = (0,_store_comment_query__WEBPACK_IMPORTED_MODULE_3__/* .useCommentActions */ .K)();
+    const onLogout = (e)=>{
         e.preventDefault();
-        if (user.user === null) {
-            await register();
-        }
-        if (type === "comment") {
-            onSubmitComment(e);
-        } else if (type === "recomment") {
-            onSubmitRecomment();
-        }
+        commentLogout();
     };
+    // 로그인 상태에서 댓글 작성
     const submitAndComment = async (e)=>{
         e.preventDefault();
         if (type === "comment") {
@@ -647,19 +637,16 @@ function WriteComment({ type  }) {
             onSubmitRecomment();
         }
     };
-    const onLogout = (e)=>{
-        e.preventDefault();
-        commentLogout();
-    };
-    return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_style__WEBPACK_IMPORTED_MODULE_9__/* .WriteCommentDiv */ .D1, {
+    const submitRegisterAndComment = async (e)=>{};
+    return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_style__WEBPACK_IMPORTED_MODULE_10__/* .WriteCommentDiv */ .D1, {
         onSubmit: (e)=>user.user ? submitAndComment(e) : submitRegisterAndComment(e),
         children: [
-            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_style__WEBPACK_IMPORTED_MODULE_9__/* .LeftDiv */ .sL, {
-                children: user.user ? /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_style__WEBPACK_IMPORTED_MODULE_9__/* .UserDiv */ .eH, {
+            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_style__WEBPACK_IMPORTED_MODULE_10__/* .LeftDiv */ .sL, {
+                children: user.user ? /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_style__WEBPACK_IMPORTED_MODULE_10__/* .UserDiv */ .eH, {
                     children: [
                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                             className: "user",
-                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_common_avatar_Avatar__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z, {
+                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_common_avatar_Avatar__WEBPACK_IMPORTED_MODULE_8__/* ["default"] */ .Z, {
                                 boxShadow: "2px 2px 10px white",
                                 width: "4rem",
                                 height: "4rem",
@@ -670,13 +657,13 @@ function WriteComment({ type  }) {
                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                             className: "button",
                             children: [
-                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_common_button_BlackButton__WEBPACK_IMPORTED_MODULE_8__/* .BlackButton */ .h, {
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_common_button_BlackButton__WEBPACK_IMPORTED_MODULE_9__/* .BlackButton */ .h, {
                                     onClick: (e)=>onLogout(e),
                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
                                         children: "로그아웃"
                                     })
                                 }),
-                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_common_button_BlackButton__WEBPACK_IMPORTED_MODULE_8__/* .BlackButton */ .h, {
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_common_button_BlackButton__WEBPACK_IMPORTED_MODULE_9__/* .BlackButton */ .h, {
                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
                                         children: "등록"
                                     })
@@ -684,7 +671,7 @@ function WriteComment({ type  }) {
                             ]
                         })
                     ]
-                }) : /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_style__WEBPACK_IMPORTED_MODULE_9__/* .SmallTextDiv */ .zu, {
+                }) : /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_style__WEBPACK_IMPORTED_MODULE_10__/* .SmallTextDiv */ .zu, {
                     children: [
                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
                             autoComplete: "off",
@@ -701,7 +688,7 @@ function WriteComment({ type  }) {
                             placeholder: "비밀번호",
                             onChange: (e)=>changeRegisterForm(e)
                         }),
-                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_common_button_BlackButton__WEBPACK_IMPORTED_MODULE_8__/* .BlackButton */ .h, {
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_common_button_BlackButton__WEBPACK_IMPORTED_MODULE_9__/* .BlackButton */ .h, {
                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
                                 children: "등록"
                             })
@@ -709,7 +696,7 @@ function WriteComment({ type  }) {
                     ]
                 })
             }),
-            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_style__WEBPACK_IMPORTED_MODULE_9__/* .RightDiv */ .yS, {
+            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_style__WEBPACK_IMPORTED_MODULE_10__/* .RightDiv */ .yS, {
                 children: [
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("textarea", {
                         autoComplete: "content",
@@ -761,6 +748,7 @@ const WriteCommentDiv = (styled_components__WEBPACK_IMPORTED_MODULE_0___default(
 const SmallTextDiv = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().div)`
   display: flex;
   flex-direction: column;
+
   input {
     margin: 0.5rem 0.5rem 0.5rem 0;
     font-size: 1.2rem;
@@ -769,6 +757,17 @@ const SmallTextDiv = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().d
     background-color: white;
     padding: 10px;
     border: none;
+    color: black;
+  }
+
+  input[type="password"] {
+    font-family: "Malgun gothic", dotum, sans-serif;
+
+    &::placeholder {
+      font-family: "NanumSquareL", sans-serif;
+      color: white;
+      opacity: 1;
+    }
   }
 `;
 const UserDiv = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().div)`
@@ -1763,18 +1762,21 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _api_Comment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3022);
 /* harmony import */ var _api_Recomment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(8306);
-/* harmony import */ var _util_toast__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(7226);
+/* harmony import */ var _util_toast__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(7226);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(6517);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _util_JQuery__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(3703);
+/* harmony import */ var _util_JQuery__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(3703);
 /* harmony import */ var jotai__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(2451);
 /* harmony import */ var _post_atom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(7481);
 /* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(1175);
 /* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_query__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var jotai_utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(2752);
 /* harmony import */ var _atom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(2380);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([jotai__WEBPACK_IMPORTED_MODULE_4__, _post_atom__WEBPACK_IMPORTED_MODULE_5__, jotai_utils__WEBPACK_IMPORTED_MODULE_7__, _atom__WEBPACK_IMPORTED_MODULE_8__]);
-([jotai__WEBPACK_IMPORTED_MODULE_4__, _post_atom__WEBPACK_IMPORTED_MODULE_5__, jotai_utils__WEBPACK_IMPORTED_MODULE_7__, _atom__WEBPACK_IMPORTED_MODULE_8__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+/* harmony import */ var _user_atom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(15);
+/* harmony import */ var _login_atom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(1518);
+/* harmony import */ var _register_atom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(3323);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([jotai__WEBPACK_IMPORTED_MODULE_4__, _post_atom__WEBPACK_IMPORTED_MODULE_5__, jotai_utils__WEBPACK_IMPORTED_MODULE_7__, _atom__WEBPACK_IMPORTED_MODULE_8__, _user_atom__WEBPACK_IMPORTED_MODULE_9__, _login_atom__WEBPACK_IMPORTED_MODULE_10__, _register_atom__WEBPACK_IMPORTED_MODULE_11__]);
+([jotai__WEBPACK_IMPORTED_MODULE_4__, _post_atom__WEBPACK_IMPORTED_MODULE_5__, jotai_utils__WEBPACK_IMPORTED_MODULE_7__, _atom__WEBPACK_IMPORTED_MODULE_8__, _user_atom__WEBPACK_IMPORTED_MODULE_9__, _login_atom__WEBPACK_IMPORTED_MODULE_10__, _register_atom__WEBPACK_IMPORTED_MODULE_11__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
 
 
 
@@ -1787,11 +1789,17 @@ var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([jota
 
 
 
-function useCommentActions() {
+
+
+
+const useCommentActions = ()=>{
     const [commentform, setCommentForm] = (0,jotai__WEBPACK_IMPORTED_MODULE_4__.useAtom)(_atom__WEBPACK_IMPORTED_MODULE_8__/* .commentFormAtom */ .v0);
     const [comments, setComments] = (0,jotai__WEBPACK_IMPORTED_MODULE_4__.useAtom)(_atom__WEBPACK_IMPORTED_MODULE_8__/* .commentsAtom */ .SY);
     const [openId, setOpenId] = (0,jotai__WEBPACK_IMPORTED_MODULE_4__.useAtom)(_atom__WEBPACK_IMPORTED_MODULE_8__/* .commentsOpenAtom */ .Ln);
     const post = (0,jotai__WEBPACK_IMPORTED_MODULE_4__.useAtomValue)(_post_atom__WEBPACK_IMPORTED_MODULE_5__/* .postAtom */ .a);
+    const user = (0,jotai__WEBPACK_IMPORTED_MODULE_4__.useAtomValue)(_user_atom__WEBPACK_IMPORTED_MODULE_9__/* .userAtom */ .L);
+    const setLoginForm = (0,jotai__WEBPACK_IMPORTED_MODULE_4__.useSetAtom)(_login_atom__WEBPACK_IMPORTED_MODULE_10__/* .loginFormAtom */ .n);
+    const [registerform, setRegisterForm] = (0,jotai__WEBPACK_IMPORTED_MODULE_4__.useAtom)(_register_atom__WEBPACK_IMPORTED_MODULE_11__/* .registerFormAtom */ .W);
     const { mutate: getComments  } = (0,react_query__WEBPACK_IMPORTED_MODULE_6__.useMutation)(_api_Comment__WEBPACK_IMPORTED_MODULE_1__/* .getCommentsApi */ .OF, {
         onSuccess (res) {
             setComments({
@@ -1821,14 +1829,15 @@ function useCommentActions() {
             [e.target.name]: e.target.value
         });
     }, 500), []);
+    // comment 집어넣기
     const { mutate: onSubmitComment  } = (0,react_query__WEBPACK_IMPORTED_MODULE_6__.useMutation)(()=>(0,_api_Comment__WEBPACK_IMPORTED_MODULE_1__/* .postCommentsApi */ .Cj)(post.post.id, commentform), {
         onSuccess () {
-            (0,_util_toast__WEBPACK_IMPORTED_MODULE_9__/* .createToast */ .Y)("댓글 등록");
+            (0,_util_toast__WEBPACK_IMPORTED_MODULE_12__/* .createToast */ .Y)("댓글 등록");
             getComments(post.post.id);
             setCommentForm({
                 content: ""
             });
-            const textArea = (0,_util_JQuery__WEBPACK_IMPORTED_MODULE_10__.$)(".writecomment-textarea").get();
+            const textArea = (0,_util_JQuery__WEBPACK_IMPORTED_MODULE_13__.$)(".writecomment-textarea").get();
             textArea.value = "";
         },
         onError (res) {
@@ -1840,12 +1849,12 @@ function useCommentActions() {
     });
     const { mutate: onSubmitRecomment  } = (0,react_query__WEBPACK_IMPORTED_MODULE_6__.useMutation)(()=>(0,_api_Recomment__WEBPACK_IMPORTED_MODULE_2__/* .postRecommentsApi */ .p)(openId.openId, commentform), {
         onSuccess () {
-            (0,_util_toast__WEBPACK_IMPORTED_MODULE_9__/* .createToast */ .Y)("대댓글 등록");
+            (0,_util_toast__WEBPACK_IMPORTED_MODULE_12__/* .createToast */ .Y)("대댓글 등록");
             getComments(post.post.id);
             setCommentForm({
                 content: ""
             });
-            const textArea = (0,_util_JQuery__WEBPACK_IMPORTED_MODULE_10__.$)(".writecomment-textarea").get();
+            const textArea = (0,_util_JQuery__WEBPACK_IMPORTED_MODULE_13__.$)(".writecomment-textarea").get();
             textArea.value = "";
         },
         onError (res) {
@@ -1857,13 +1866,13 @@ function useCommentActions() {
     });
     const { mutate: onGoRemoveRecomment  } = (0,react_query__WEBPACK_IMPORTED_MODULE_6__.useMutation)((commentId)=>(0,_api_Recomment__WEBPACK_IMPORTED_MODULE_2__/* .deleteRecommentsApi */ .Z)(commentId), {
         onSuccess () {
-            (0,_util_toast__WEBPACK_IMPORTED_MODULE_9__/* .createToast */ .Y)("대댓글 삭제");
+            (0,_util_toast__WEBPACK_IMPORTED_MODULE_12__/* .createToast */ .Y)("대댓글 삭제");
             getComments(post.post.id);
         }
     });
     const { mutate: onGoRemoveComment  } = (0,react_query__WEBPACK_IMPORTED_MODULE_6__.useMutation)((recommentId)=>(0,_api_Comment__WEBPACK_IMPORTED_MODULE_1__/* .deleteCommentsApi */ .Ct)(recommentId), {
         onSuccess () {
-            (0,_util_toast__WEBPACK_IMPORTED_MODULE_9__/* .createToast */ .Y)("댓글 삭제");
+            (0,_util_toast__WEBPACK_IMPORTED_MODULE_12__/* .createToast */ .Y)("댓글 삭제");
             getComments(post.post.id);
         }
     });
@@ -1872,6 +1881,7 @@ function useCommentActions() {
         comments: comments.comments,
         commentform,
         openId,
+        user,
         setOpen,
         getComments,
         onChangeComment,
@@ -1880,7 +1890,7 @@ function useCommentActions() {
         onGoRemoveComment,
         onGoRemoveRecomment
     };
-}
+};
 function useCommentEffect(getComments, post) {
     const setCommentForm = (0,jotai_utils__WEBPACK_IMPORTED_MODULE_7__.useResetAtom)(_atom__WEBPACK_IMPORTED_MODULE_8__/* .commentFormAtom */ .v0);
     const setComments = (0,jotai_utils__WEBPACK_IMPORTED_MODULE_7__.useResetAtom)(_atom__WEBPACK_IMPORTED_MODULE_8__/* .commentsAtom */ .SY);
@@ -2246,7 +2256,7 @@ module.exports = import("remark-gfm");;
 var __webpack_require__ = require("../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [676,664,425,930,874,195,240,703,16,235,853], () => (__webpack_exec__(9034)));
+var __webpack_exports__ = __webpack_require__.X(0, [676,664,425,930,874,195,240,703,16,344,853], () => (__webpack_exec__(9034)));
 module.exports = __webpack_exports__;
 
 })();

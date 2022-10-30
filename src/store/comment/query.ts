@@ -8,7 +8,7 @@ import { deleteRecommentsApi, postRecommentsApi } from "../../api/Recomment";
 import { createToast } from "../../util/toast";
 import { debounce } from "lodash";
 import { $ } from "../../util/JQuery";
-import { useAtom, useAtomValue } from "jotai";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { postAtom } from "../post/atom";
 import { UseMutateFunction, useMutation } from "react-query";
 import { WritableAtom } from "jotai";
@@ -16,12 +16,23 @@ import { useResetAtom } from "jotai/utils";
 import { useEffect } from "react";
 import { commentFormAtom, commentsAtom, commentsOpenAtom } from "./atom";
 import { ICommentsAtom, ICommentsFormAtom, ICommentsOpenAtom } from "./type";
+import { userAtom } from "../user/atom";
+import { loginFormAtom } from "../login/atom";
+import { registerFormAtom } from "../register/atom";
 
-export function useCommentActions() {
+export type IUseCommentActions = {
+  type: string;
+  register: () => Promise<void>;
+};
+
+export const useCommentActions = () => {
   const [commentform, setCommentForm] = useAtom(commentFormAtom);
   const [comments, setComments] = useAtom(commentsAtom);
   const [openId, setOpenId] = useAtom(commentsOpenAtom);
   const post = useAtomValue(postAtom);
+  const user = useAtomValue(userAtom);
+  const setLoginForm = useSetAtom(loginFormAtom);
+  const [registerform, setRegisterForm] = useAtom(registerFormAtom);
 
   const { mutate: getComments } = useMutation(getCommentsApi, {
     onSuccess(res) {
@@ -56,6 +67,7 @@ export function useCommentActions() {
     []
   );
 
+  // comment 집어넣기
   const { mutate: onSubmitComment } = useMutation(
     () => postCommentsApi(post.post.id, commentform),
     {
@@ -123,6 +135,7 @@ export function useCommentActions() {
     comments: comments.comments,
     commentform,
     openId,
+    user,
     setOpen,
     getComments,
     onChangeComment,
@@ -131,7 +144,7 @@ export function useCommentActions() {
     onGoRemoveComment,
     onGoRemoveRecomment,
   };
-}
+};
 
 export function useCommentEffect(
   getComments: UseMutateFunction<any, { message: string }, number, unknown>,
