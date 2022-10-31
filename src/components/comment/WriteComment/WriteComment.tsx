@@ -1,6 +1,7 @@
 import { useAtomValue } from "jotai";
 import React from "react";
 import { useCommentActions } from "../../../store/comment/query";
+import { useCommentUserActions } from "../../../store/commentuser/query";
 import { useLoginActions } from "../../../store/login/query";
 import { useRegisterActions } from "../../../store/register/query";
 import { userAtom } from "../../../store/user/atom";
@@ -15,8 +16,9 @@ export type IWriteComment = {
 
 export default function WriteComment({ type }: IWriteComment) {
   const user = useAtomValue(userAtom);
-  const { login, changeLoginForm } = useLoginActions();
-  const { register, changeRegisterForm, registerform } = useRegisterActions();
+  // const { login, changeLoginForm } = useLoginActions();
+  const { commentUserform, commentUser, changeCommentUserForm } =
+    useCommentUserActions();
   const { commentLogout } = useUserActions();
   const { error, onChangeComment, onSubmitComment, onSubmitRecomment } =
     useCommentActions();
@@ -26,16 +28,23 @@ export default function WriteComment({ type }: IWriteComment) {
     commentLogout();
   };
   // 로그인 상태에서 댓글 작성
-  const submitAndComment = async (e) => {
+  const submitAndComment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (type === "comment") {
-      onSubmitComment(e);
+      await onSubmitComment();
     } else if (type === "recomment") {
-      onSubmitRecomment();
+      await onSubmitRecomment();
     }
   };
-
-  const submitRegisterAndComment = async (e) => {};
+  // 비로그인 상태에서 댓글 작성
+  const submitRegisterAndComment = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
+    e.preventDefault();
+    return new Promise(commentUser).then(() => submitAndComment(e));
+    // await commentUser();
+    // await submitAndComment(e);
+  };
 
   return (
     <S.WriteCommentDiv
@@ -68,18 +77,18 @@ export default function WriteComment({ type }: IWriteComment) {
           <S.SmallTextDiv>
             <input
               autoComplete="off"
-              value={registerform.username}
+              value={commentUserform.username}
               name="username"
               placeholder="닉네임"
-              onChange={(e) => changeRegisterForm(e)}
+              onChange={(e) => changeCommentUserForm(e)}
             />
             <input
               autoComplete="off"
-              value={registerform.password}
+              value={commentUserform.password}
               name="password"
               type="password"
               placeholder="비밀번호"
-              onChange={(e) => changeRegisterForm(e)}
+              onChange={(e) => changeCommentUserForm(e)}
             />
             <BlackButton>
               <p>등록</p>

@@ -598,16 +598,14 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6689);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _store_comment_query__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8650);
-/* harmony import */ var _store_login_query__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(4802);
-/* harmony import */ var _store_register_query__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(8776);
-/* harmony import */ var _store_user_atom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(15);
-/* harmony import */ var _store_user_query__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(339);
-/* harmony import */ var _common_avatar_Avatar__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(195);
-/* harmony import */ var _common_button_BlackButton__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(8902);
-/* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(6930);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([jotai__WEBPACK_IMPORTED_MODULE_1__, _store_comment_query__WEBPACK_IMPORTED_MODULE_3__, _store_login_query__WEBPACK_IMPORTED_MODULE_4__, _store_register_query__WEBPACK_IMPORTED_MODULE_5__, _store_user_atom__WEBPACK_IMPORTED_MODULE_6__, _store_user_query__WEBPACK_IMPORTED_MODULE_7__]);
-([jotai__WEBPACK_IMPORTED_MODULE_1__, _store_comment_query__WEBPACK_IMPORTED_MODULE_3__, _store_login_query__WEBPACK_IMPORTED_MODULE_4__, _store_register_query__WEBPACK_IMPORTED_MODULE_5__, _store_user_atom__WEBPACK_IMPORTED_MODULE_6__, _store_user_query__WEBPACK_IMPORTED_MODULE_7__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
-
+/* harmony import */ var _store_commentuser_query__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(7439);
+/* harmony import */ var _store_user_atom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(15);
+/* harmony import */ var _store_user_query__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(339);
+/* harmony import */ var _common_avatar_Avatar__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(195);
+/* harmony import */ var _common_button_BlackButton__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(8902);
+/* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(6930);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([jotai__WEBPACK_IMPORTED_MODULE_1__, _store_comment_query__WEBPACK_IMPORTED_MODULE_3__, _store_commentuser_query__WEBPACK_IMPORTED_MODULE_4__, _store_user_atom__WEBPACK_IMPORTED_MODULE_5__, _store_user_query__WEBPACK_IMPORTED_MODULE_6__]);
+([jotai__WEBPACK_IMPORTED_MODULE_1__, _store_comment_query__WEBPACK_IMPORTED_MODULE_3__, _store_commentuser_query__WEBPACK_IMPORTED_MODULE_4__, _store_user_atom__WEBPACK_IMPORTED_MODULE_5__, _store_user_query__WEBPACK_IMPORTED_MODULE_6__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
 
 
 
@@ -619,10 +617,10 @@ var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([jota
 
 
 function WriteComment({ type  }) {
-    const user = (0,jotai__WEBPACK_IMPORTED_MODULE_1__.useAtomValue)(_store_user_atom__WEBPACK_IMPORTED_MODULE_6__/* .userAtom */ .L);
-    const { login , changeLoginForm  } = (0,_store_login_query__WEBPACK_IMPORTED_MODULE_4__/* .useLoginActions */ .c)();
-    const { register , changeRegisterForm , registerform  } = (0,_store_register_query__WEBPACK_IMPORTED_MODULE_5__/* .useRegisterActions */ .A)();
-    const { commentLogout  } = (0,_store_user_query__WEBPACK_IMPORTED_MODULE_7__/* .useUserActions */ ._y)();
+    const user = (0,jotai__WEBPACK_IMPORTED_MODULE_1__.useAtomValue)(_store_user_atom__WEBPACK_IMPORTED_MODULE_5__/* .userAtom */ .L);
+    // const { login, changeLoginForm } = useLoginActions();
+    const { commentUserform , commentUser , changeCommentUserForm  } = (0,_store_commentuser_query__WEBPACK_IMPORTED_MODULE_4__/* .useCommentUserActions */ .a)();
+    const { commentLogout  } = (0,_store_user_query__WEBPACK_IMPORTED_MODULE_6__/* .useUserActions */ ._y)();
     const { error , onChangeComment , onSubmitComment , onSubmitRecomment  } = (0,_store_comment_query__WEBPACK_IMPORTED_MODULE_3__/* .useCommentActions */ .K)();
     const onLogout = (e)=>{
         e.preventDefault();
@@ -632,21 +630,27 @@ function WriteComment({ type  }) {
     const submitAndComment = async (e)=>{
         e.preventDefault();
         if (type === "comment") {
-            onSubmitComment(e);
+            await onSubmitComment();
         } else if (type === "recomment") {
-            onSubmitRecomment();
+            await onSubmitRecomment();
         }
     };
-    const submitRegisterAndComment = async (e)=>{};
-    return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_style__WEBPACK_IMPORTED_MODULE_10__/* .WriteCommentDiv */ .D1, {
+    // 비로그인 상태에서 댓글 작성
+    const submitRegisterAndComment = async (e)=>{
+        e.preventDefault();
+        return new Promise(commentUser).then(()=>submitAndComment(e));
+    // await commentUser();
+    // await submitAndComment(e);
+    };
+    return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_style__WEBPACK_IMPORTED_MODULE_9__/* .WriteCommentDiv */ .D1, {
         onSubmit: (e)=>user.user ? submitAndComment(e) : submitRegisterAndComment(e),
         children: [
-            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_style__WEBPACK_IMPORTED_MODULE_10__/* .LeftDiv */ .sL, {
-                children: user.user ? /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_style__WEBPACK_IMPORTED_MODULE_10__/* .UserDiv */ .eH, {
+            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_style__WEBPACK_IMPORTED_MODULE_9__/* .LeftDiv */ .sL, {
+                children: user.user ? /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_style__WEBPACK_IMPORTED_MODULE_9__/* .UserDiv */ .eH, {
                     children: [
                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                             className: "user",
-                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_common_avatar_Avatar__WEBPACK_IMPORTED_MODULE_8__/* ["default"] */ .Z, {
+                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_common_avatar_Avatar__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z, {
                                 boxShadow: "2px 2px 10px white",
                                 width: "4rem",
                                 height: "4rem",
@@ -657,13 +661,13 @@ function WriteComment({ type  }) {
                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                             className: "button",
                             children: [
-                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_common_button_BlackButton__WEBPACK_IMPORTED_MODULE_9__/* .BlackButton */ .h, {
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_common_button_BlackButton__WEBPACK_IMPORTED_MODULE_8__/* .BlackButton */ .h, {
                                     onClick: (e)=>onLogout(e),
                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
                                         children: "로그아웃"
                                     })
                                 }),
-                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_common_button_BlackButton__WEBPACK_IMPORTED_MODULE_9__/* .BlackButton */ .h, {
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_common_button_BlackButton__WEBPACK_IMPORTED_MODULE_8__/* .BlackButton */ .h, {
                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
                                         children: "등록"
                                     })
@@ -671,24 +675,24 @@ function WriteComment({ type  }) {
                             ]
                         })
                     ]
-                }) : /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_style__WEBPACK_IMPORTED_MODULE_10__/* .SmallTextDiv */ .zu, {
+                }) : /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_style__WEBPACK_IMPORTED_MODULE_9__/* .SmallTextDiv */ .zu, {
                     children: [
                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
                             autoComplete: "off",
-                            value: registerform.username,
+                            value: commentUserform.username,
                             name: "username",
                             placeholder: "닉네임",
-                            onChange: (e)=>changeRegisterForm(e)
+                            onChange: (e)=>changeCommentUserForm(e)
                         }),
                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
                             autoComplete: "off",
-                            value: registerform.password,
+                            value: commentUserform.password,
                             name: "password",
                             type: "password",
                             placeholder: "비밀번호",
-                            onChange: (e)=>changeRegisterForm(e)
+                            onChange: (e)=>changeCommentUserForm(e)
                         }),
-                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_common_button_BlackButton__WEBPACK_IMPORTED_MODULE_9__/* .BlackButton */ .h, {
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_common_button_BlackButton__WEBPACK_IMPORTED_MODULE_8__/* .BlackButton */ .h, {
                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
                                 children: "등록"
                             })
@@ -696,7 +700,7 @@ function WriteComment({ type  }) {
                     ]
                 })
             }),
-            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_style__WEBPACK_IMPORTED_MODULE_10__/* .RightDiv */ .yS, {
+            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_style__WEBPACK_IMPORTED_MODULE_9__/* .RightDiv */ .yS, {
                 children: [
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("textarea", {
                         autoComplete: "content",
@@ -1917,6 +1921,107 @@ __webpack_async_result__();
 
 /***/ }),
 
+/***/ 397:
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "q": () => (/* binding */ commentUserFormAtom)
+/* harmony export */ });
+/* harmony import */ var jotai__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2451);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([jotai__WEBPACK_IMPORTED_MODULE_0__]);
+jotai__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+
+const commentUserFormAtom = (0,jotai__WEBPACK_IMPORTED_MODULE_0__.atom)({
+    username: "",
+    password: ""
+});
+commentUserFormAtom.debugLabel = "commentuser";
+
+__webpack_async_result__();
+} catch(e) { __webpack_async_result__(e); } });
+
+/***/ }),
+
+/***/ 7439:
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "a": () => (/* binding */ useCommentUserActions)
+/* harmony export */ });
+/* harmony import */ var _modal_atom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6406);
+/* harmony import */ var jotai__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2451);
+/* harmony import */ var _user_atom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(15);
+/* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1175);
+/* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_query__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _api_Auth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(2361);
+/* harmony import */ var _atom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(397);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_modal_atom__WEBPACK_IMPORTED_MODULE_0__, jotai__WEBPACK_IMPORTED_MODULE_1__, _user_atom__WEBPACK_IMPORTED_MODULE_2__, _atom__WEBPACK_IMPORTED_MODULE_5__]);
+([_modal_atom__WEBPACK_IMPORTED_MODULE_0__, jotai__WEBPACK_IMPORTED_MODULE_1__, _user_atom__WEBPACK_IMPORTED_MODULE_2__, _atom__WEBPACK_IMPORTED_MODULE_5__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+
+
+
+
+
+
+function useCommentUserActions() {
+    const [_, setModal] = (0,jotai__WEBPACK_IMPORTED_MODULE_1__.useAtom)(_modal_atom__WEBPACK_IMPORTED_MODULE_0__/* .modalAtom */ .h);
+    const [commentUserform, setCommentUserForm] = (0,jotai__WEBPACK_IMPORTED_MODULE_1__.useAtom)(_atom__WEBPACK_IMPORTED_MODULE_5__/* .commentUserFormAtom */ .q);
+    const [user, setUser] = (0,jotai__WEBPACK_IMPORTED_MODULE_1__.useAtom)(_user_atom__WEBPACK_IMPORTED_MODULE_2__/* .userAtom */ .L);
+    const { mutate , isLoading  } = (0,react_query__WEBPACK_IMPORTED_MODULE_3__.useMutation)(_api_Auth__WEBPACK_IMPORTED_MODULE_4__/* .postCommentUserApi */ .OJ, {
+        onSuccess (res) {
+            setUser({
+                error: "",
+                user: {
+                    ...res
+                }
+            });
+            setCommentUserForm({
+                username: "",
+                password: ""
+            });
+            setModal({
+                on: false,
+                type: ""
+            });
+        },
+        onError (res) {
+            setUser({
+                ...user,
+                error: "오류 : " + res.message
+            });
+        }
+    });
+    const changeCommentUserForm = (e)=>{
+        setCommentUserForm({
+            ...commentUserform,
+            [e.target.name]: e.target.value
+        });
+    };
+    const initializeAuth = ()=>{
+        setUser({
+            ...user,
+            error: ""
+        });
+    };
+    const commentUser = async ()=>{
+        mutate(commentUserform);
+    };
+    return {
+        commentUser,
+        commentUserform,
+        changeCommentUserForm,
+        initializeAuth,
+        isLoading
+    };
+}
+
+__webpack_async_result__();
+} catch(e) { __webpack_async_result__(e); } });
+
+/***/ }),
+
 /***/ 2466:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2256,7 +2361,7 @@ module.exports = import("remark-gfm");;
 var __webpack_require__ = require("../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [676,664,425,930,874,195,240,703,16,344,853], () => (__webpack_exec__(9034)));
+var __webpack_exports__ = __webpack_require__.X(0, [676,664,425,930,874,195,240,703,16,235,853], () => (__webpack_exec__(9034)));
 module.exports = __webpack_exports__;
 
 })();

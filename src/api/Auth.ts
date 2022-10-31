@@ -1,4 +1,5 @@
 import { SERVER_URL } from "../constants/URL";
+import { ICommentUserFormAtom } from "../store/commentuser/type";
 import { ILoginFormAtom } from "../store/login/type";
 import { IRegisterFormAtom } from "../store/register/type";
 import Api from "./methods";
@@ -13,4 +14,8 @@ export const postLoginApi = async (body: ILoginFormAtom) => {
 
 export const postRegisterApi = async (body: IRegisterFormAtom) => {
   return await Api().post(`${SERVER_URL}/auth/register`, body);
+};
+
+export const postCommentUserApi = async (body: ICommentUserFormAtom) => {
+  return await Api().post(`${SERVER_URL}/auth/comment`, body);
 };

@@ -9,6 +9,7 @@ exports.modules = {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "EB": () => (/* binding */ postRegisterApi),
 /* harmony export */   "Hh": () => (/* binding */ getCheckApi),
+/* harmony export */   "OJ": () => (/* binding */ postCommentUserApi),
 /* harmony export */   "kj": () => (/* binding */ postLoginApi)
 /* harmony export */ });
 /* harmony import */ var _constants_URL__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5539);
@@ -23,6 +24,9 @@ const postLoginApi = async (body)=>{
 };
 const postRegisterApi = async (body)=>{
     return await (0,_methods__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)().post(`${_constants_URL__WEBPACK_IMPORTED_MODULE_0__/* .SERVER_URL */ .LB}/auth/register`, body);
+};
+const postCommentUserApi = async (body)=>{
+    return await (0,_methods__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)().post(`${_constants_URL__WEBPACK_IMPORTED_MODULE_0__/* .SERVER_URL */ .LB}/auth/comment`, body);
 };
 
 
