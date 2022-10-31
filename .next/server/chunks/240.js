@@ -26,6 +26,7 @@ const postRegisterApi = async (body)=>{
     return await (0,_methods__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)().post(`${_constants_URL__WEBPACK_IMPORTED_MODULE_0__/* .SERVER_URL */ .LB}/auth/register`, body);
 };
 const postCommentUserApi = async (body)=>{
+    console.log("코멘트유저");
     return await (0,_methods__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)().post(`${_constants_URL__WEBPACK_IMPORTED_MODULE_0__/* .SERVER_URL */ .LB}/auth/comment`, body);
 };
 

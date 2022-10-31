@@ -7,6 +7,8 @@ export const getCommentsApi = async (id: number) => {
 };
 
 export const postCommentsApi = async (postId: number, body) => {
+  console.log("코멘트 쓰기");
+
   return await Api().postToken<IComments>(
     `${SERVER_URL}/comment/${postId}`,
     body

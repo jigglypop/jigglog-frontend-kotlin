@@ -17,5 +17,6 @@ export const postRegisterApi = async (body: IRegisterFormAtom) => {
 };
 
 export const postCommentUserApi = async (body: ICommentUserFormAtom) => {
+  console.log("코멘트유저");
   return await Api().post(`${SERVER_URL}/auth/comment`, body);
 };

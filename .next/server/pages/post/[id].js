@@ -21,6 +21,7 @@ const getCommentsApi = async (id)=>{
     return await (0,_methods__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)().get(`${_constants_URL__WEBPACK_IMPORTED_MODULE_0__/* .SERVER_URL */ .LB}/comment/${id}`);
 };
 const postCommentsApi = async (postId, body)=>{
+    console.log("코멘트 쓰기");
     return await (0,_methods__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)().postToken(`${_constants_URL__WEBPACK_IMPORTED_MODULE_0__/* .SERVER_URL */ .LB}/comment/${postId}`, body);
 };
 const deleteCommentsApi = async (commentId)=>{
@@ -86,10 +87,15 @@ function Comments() {
                     ]
                 })
             }),
-            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_style__WEBPACK_IMPORTED_MODULE_3__/* .CommentWriteDiv */ .rP, {
-                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_WriteComment_WriteComment__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z, {
-                    type: "comment"
-                })
+            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_style__WEBPACK_IMPORTED_MODULE_3__/* .CommentWriteDiv */ .rP, {
+                children: [
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h6", {
+                        children: '닉네임과 비밀번호를 입력하지 않으면 자동으로 "비공개"로 댓글을 쓸 수 있습니다.'
+                    }),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_WriteComment_WriteComment__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z, {
+                        type: "comment"
+                    })
+                ]
             }),
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_style__WEBPACK_IMPORTED_MODULE_3__/* .CommentItemsDiv */ .jX, {
                 children: comments && comments.map((comment, index)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_CommentItem_CommentItem__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z, {
@@ -618,8 +624,7 @@ var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([jota
 
 function WriteComment({ type  }) {
     const user = (0,jotai__WEBPACK_IMPORTED_MODULE_1__.useAtomValue)(_store_user_atom__WEBPACK_IMPORTED_MODULE_5__/* .userAtom */ .L);
-    // const { login, changeLoginForm } = useLoginActions();
-    const { commentUserform , commentUser , changeCommentUserForm  } = (0,_store_commentuser_query__WEBPACK_IMPORTED_MODULE_4__/* .useCommentUserActions */ .a)();
+    const { commentUserform , commentUser , changeCommentUserForm , isSuccess  } = (0,_store_commentuser_query__WEBPACK_IMPORTED_MODULE_4__/* .useCommentUserActions */ .a)();
     const { commentLogout  } = (0,_store_user_query__WEBPACK_IMPORTED_MODULE_6__/* .useUserActions */ ._y)();
     const { error , onChangeComment , onSubmitComment , onSubmitRecomment  } = (0,_store_comment_query__WEBPACK_IMPORTED_MODULE_3__/* .useCommentActions */ .K)();
     const onLogout = (e)=>{
@@ -627,21 +632,32 @@ function WriteComment({ type  }) {
         commentLogout();
     };
     // 로그인 상태에서 댓글 작성
-    const submitAndComment = async (e)=>{
+    const submitAndComment = (e)=>{
         e.preventDefault();
         if (type === "comment") {
-            await onSubmitComment();
+            onSubmitComment();
         } else if (type === "recomment") {
-            await onSubmitRecomment();
+            onSubmitRecomment();
         }
     };
     // 비로그인 상태에서 댓글 작성
     const submitRegisterAndComment = async (e)=>{
         e.preventDefault();
-        return new Promise(commentUser).then(()=>submitAndComment(e));
-    // await commentUser();
-    // await submitAndComment(e);
+        return new Promise(async (resolve)=>{
+            console.log("함수1");
+            const res = await commentUser();
+            resolve(res);
+        });
     };
+    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{
+        if (type === "comment") {
+            onSubmitComment();
+        } else if (type === "recomment") {
+            onSubmitRecomment();
+        }
+    }, [
+        isSuccess
+    ]);
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_style__WEBPACK_IMPORTED_MODULE_9__/* .WriteCommentDiv */ .D1, {
         onSubmit: (e)=>user.user ? submitAndComment(e) : submitRegisterAndComment(e),
         children: [
@@ -1969,7 +1985,7 @@ function useCommentUserActions() {
     const [_, setModal] = (0,jotai__WEBPACK_IMPORTED_MODULE_1__.useAtom)(_modal_atom__WEBPACK_IMPORTED_MODULE_0__/* .modalAtom */ .h);
     const [commentUserform, setCommentUserForm] = (0,jotai__WEBPACK_IMPORTED_MODULE_1__.useAtom)(_atom__WEBPACK_IMPORTED_MODULE_5__/* .commentUserFormAtom */ .q);
     const [user, setUser] = (0,jotai__WEBPACK_IMPORTED_MODULE_1__.useAtom)(_user_atom__WEBPACK_IMPORTED_MODULE_2__/* .userAtom */ .L);
-    const { mutate , isLoading  } = (0,react_query__WEBPACK_IMPORTED_MODULE_3__.useMutation)(_api_Auth__WEBPACK_IMPORTED_MODULE_4__/* .postCommentUserApi */ .OJ, {
+    const { mutate , isLoading , isSuccess  } = (0,react_query__WEBPACK_IMPORTED_MODULE_3__.useMutation)(_api_Auth__WEBPACK_IMPORTED_MODULE_4__/* .postCommentUserApi */ .OJ, {
         onSuccess (res) {
             setUser({
                 error: "",
@@ -2013,7 +2029,8 @@ function useCommentUserActions() {
         commentUserform,
         changeCommentUserForm,
         initializeAuth,
-        isLoading
+        isLoading,
+        isSuccess
     };
 }
 

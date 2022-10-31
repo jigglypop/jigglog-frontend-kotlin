@@ -10,7 +10,7 @@ export function useCommentUserActions() {
   const [_, setModal] = useAtom(modalAtom);
   const [commentUserform, setCommentUserForm] = useAtom(commentUserFormAtom);
   const [user, setUser] = useAtom(userAtom);
-  const { mutate, isLoading } = useMutation(postCommentUserApi, {
+  const { mutate, isLoading, isSuccess } = useMutation(postCommentUserApi, {
     onSuccess(res: IUser) {
       setUser({ error: "", user: { ...res } });
       setCommentUserForm({
@@ -51,5 +51,6 @@ export function useCommentUserActions() {
     changeCommentUserForm,
     initializeAuth,
     isLoading,
+    isSuccess,
   };
 }

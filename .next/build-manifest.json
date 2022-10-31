@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/B6MCiLQB6Ub_Uppo-6gxV/_buildManifest.js",
-    "static/B6MCiLQB6Ub_Uppo-6gxV/_ssgManifest.js"
+    "static/jMPVWYN5XT-YXMW_533hv/_buildManifest.js",
+    "static/jMPVWYN5XT-YXMW_533hv/_ssgManifest.js"
   ],
   "rootMainFiles": [],
   "pages": {
@@ -23,7 +23,7 @@
       "static/chunks/framework-f96980139e0a11dc.js",
       "static/chunks/main-03a2eb822befbd79.js",
       "static/css/40adae3228ea41e7.css",
-      "static/chunks/pages/_app-83f9699484838763.js"
+      "static/chunks/pages/_app-019298f21b1ffcfb.js"
     ],
     "/_error": [
       "static/chunks/webpack-ad4c1447c030673b.js",
@@ -65,7 +65,7 @@
       "static/chunks/1a48c3c1-77176b387cbbf89c.js",
       "static/chunks/382-0204308a1271c573.js",
       "static/chunks/693-edaec530fbbd82c3.js",
-      "static/chunks/pages/post/[id]-e190e628c5ac9ccd.js"
+      "static/chunks/pages/post/[id]-63bdb9564543694a.js"
     ],
     "/resume": [
       "static/chunks/webpack-ad4c1447c030673b.js",

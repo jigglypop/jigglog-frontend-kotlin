@@ -1,5 +1,5 @@
 import { useAtomValue } from "jotai";
-import React from "react";
+import React, { useEffect } from "react";
 import { useCommentActions } from "../../../store/comment/query";
 import { useCommentUserActions } from "../../../store/commentuser/query";
 import { useLoginActions } from "../../../store/login/query";
@@ -16,8 +16,7 @@ export type IWriteComment = {
 
 export default function WriteComment({ type }: IWriteComment) {
   const user = useAtomValue(userAtom);
-  // const { login, changeLoginForm } = useLoginActions();
-  const { commentUserform, commentUser, changeCommentUserForm } =
+  const { commentUserform, commentUser, changeCommentUserForm, isSuccess } =
     useCommentUserActions();
   const { commentLogout } = useUserActions();
   const { error, onChangeComment, onSubmitComment, onSubmitRecomment } =
@@ -28,23 +27,33 @@ export default function WriteComment({ type }: IWriteComment) {
     commentLogout();
   };
   // 로그인 상태에서 댓글 작성
-  const submitAndComment = async (e: React.FormEvent<HTMLFormElement>) => {
+  const submitAndComment = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (type === "comment") {
-      await onSubmitComment();
+      onSubmitComment();
     } else if (type === "recomment") {
-      await onSubmitRecomment();
+      onSubmitRecomment();
     }
   };
+
   // 비로그인 상태에서 댓글 작성
   const submitRegisterAndComment = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
     e.preventDefault();
-    return new Promise(commentUser).then(() => submitAndComment(e));
-    // await commentUser();
-    // await submitAndComment(e);
+    return new Promise<void>(async (resolve) => {
+      const res = await commentUser();
+      resolve(res);
+    });
   };
+
+  useEffect(() => {
+    if (type === "comment") {
+      onSubmitComment();
+    } else if (type === "recomment") {
+      onSubmitRecomment();
+    }
+  }, [isSuccess]);
 
   return (
     <S.WriteCommentDiv
