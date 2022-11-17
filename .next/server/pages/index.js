@@ -806,10 +806,6 @@ function ThreeOuter({ categorySet  }) {
                         minDistance: 60,
                         maxDistance: 100
                     }),
-                    /*#__PURE__*/ jsx_runtime_.jsx(drei_namespaceObject.Stars, {
-                        saturation: 10,
-                        count: 1000
-                    }),
                     /*#__PURE__*/ jsx_runtime_.jsx(Earth, {
                         setProgress: setProgress
                     }),
@@ -822,7 +818,7 @@ function ThreeOuter({ categorySet  }) {
                     /*#__PURE__*/ jsx_runtime_.jsx("fog", {
                         attach: "fog",
                         args: [
-                            "#030303",
+                            "#020202",
                             15,
                             120
                         ]
@@ -832,15 +828,6 @@ function ThreeOuter({ categorySet  }) {
                     }),
                     /*#__PURE__*/ jsx_runtime_.jsx(CategoryLight, {
                         categorySet: categorySet
-                    }),
-                    /*#__PURE__*/ jsx_runtime_.jsx("color", {
-                        attach: "background",
-                        args: [
-                            "#010101"
-                        ]
-                    }),
-                    /*#__PURE__*/ jsx_runtime_.jsx(Earth, {
-                        setProgress: setProgress
                     }),
                     /*#__PURE__*/ jsx_runtime_.jsx(postprocessing_namespaceObject.EffectComposer, {
                         children: /*#__PURE__*/ jsx_runtime_.jsx(postprocessing_namespaceObject.Bloom, {
