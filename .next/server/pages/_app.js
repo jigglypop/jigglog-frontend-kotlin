@@ -810,7 +810,7 @@ function Header() {
                         children: "카테고리"
                     }),
                     categories.categories.map((category, i)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_style__WEBPACK_IMPORTED_MODULE_2__/* .SideBarItem */ .xZ, {
-                            color: _constants_constants__WEBPACK_IMPORTED_MODULE_22__/* .COLORS */ .DM[i % 10],
+                            color: _constants_constants__WEBPACK_IMPORTED_MODULE_22__/* .COLORSLIGHT */ .o4[i % 10],
                             onClick: ()=>onPush(`/category/${category.id}`),
                             className: `sidebar-category-${category.id}-button`,
                             children: [

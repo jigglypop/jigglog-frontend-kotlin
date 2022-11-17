@@ -6,6 +6,7 @@ import Responsive from "../components/common/responsive/Responsive";
 import ThreeOuter from "../components/Three/ThreeOuter";
 import { categoriesAtom } from "../store/categories/atom";
 import { toJson } from "../util/toJson";
+// import { EffectComposer, Bloom } from "@react-three/postprocessing";
 
 export default function App() {
   const categories = useAtomValue(categoriesAtom);

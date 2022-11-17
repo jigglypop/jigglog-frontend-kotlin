@@ -1,14 +1,26 @@
+export const COLORSLIGHT = [
+  "#b294ff",
+  "#57e6e6",
+  "#feffb8",
+  "#57e6e6",
+  "#b294ff",
+  "#b294ff",
+  "#57e6e6",
+  "#feffb8",
+  "#57e6e6",
+  "#b294ff",
+];
 export const COLORS = [
-  "#b294ff",
-  "#57e6e6",
-  "#feffb8",
-  "#57e6e6",
-  "#b294ff",
-  "#b294ff",
-  "#57e6e6",
-  "#feffb8",
-  "#57e6e6",
-  "#b294ff",
+  [6, 1, 1],
+  [6, 2, 2],
+  [6, 3, 3],
+  [6, 4, 1],
+  [6, 5, 5],
+  [6, 6, 1],
+  [6, 7, 1],
+  [6, 2, 1],
+  [6, 3, 1],
+  [6, 2, 5],
 ];
 
 export const COLORS_GRAD = [

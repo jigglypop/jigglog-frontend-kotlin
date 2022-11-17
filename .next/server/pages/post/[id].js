@@ -644,7 +644,6 @@ function WriteComment({ type  }) {
     const submitRegisterAndComment = async (e)=>{
         e.preventDefault();
         return new Promise(async (resolve)=>{
-            console.log("함수1");
             const res = await commentUser();
             resolve(res);
         });

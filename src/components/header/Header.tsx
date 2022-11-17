@@ -14,7 +14,7 @@ import Avatar from "../common/avatar/Avatar";
 import { AvatarIcon } from "../common/icon/AvatarIcon";
 import { GradientText } from "../common/text/Text";
 import { useRouter } from "next/router";
-import { COLORS } from "../../constants/constants";
+import { COLORS, COLORSLIGHT } from "../../constants/constants";
 import { useAtomValue } from "jotai";
 import { categoriesAtom } from "../../store/categories/atom";
 import { userAtom } from "../../store/user/atom";
@@ -130,7 +130,7 @@ export default function Header() {
         <GradientText className="category-title">카테고리</GradientText>
         {categories.categories.map((category: ICategory, i: number) => (
           <S.SideBarItem
-            color={COLORS[i % 10]}
+            color={COLORSLIGHT[i % 10]}
             key={category.id}
             onClick={() => onPush(`/category/${category.id}`)}
             className={`sidebar-category-${category.id}-button`}

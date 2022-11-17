@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import * as S from "./style";
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls, Stars } from "@react-three/drei";
 import Progress from "./Progress";
 import { Earth } from "./model/Earth";
 import { Star } from "./model/Star";
@@ -10,6 +10,8 @@ import { Outer } from "./model/Outer";
 import { ICategory } from "../../type/category";
 import { $ } from "../../util/JQuery";
 import { GradientText } from "../common/text/Text";
+import CategoryLight from "./model/CategoryLight";
+import { Bloom, EffectComposer } from "@react-three/postprocessing";
 
 export default function ThreeOuter({
   categorySet,
@@ -49,11 +51,18 @@ export default function ThreeOuter({
         }}
       >
         <OrbitControls minDistance={60} maxDistance={100} />
+        <Stars saturation={10} count={1000} />
         <Earth setProgress={setProgress} />
         <Star setProgress={setProgress} />
         <Outer setProgress={setProgress} />
-        <fog attach="fog" args={["#0a0a0a", 15, 120]} />
+        <fog attach="fog" args={["#030303", 15, 120]} />
         <CategoryStarSet categorySet={categorySet} />
+        <CategoryLight categorySet={categorySet} />
+        <color attach="background" args={["#010101"]} />
+        <Earth setProgress={setProgress} />
+        <EffectComposer>
+          <Bloom mipmapBlur luminanceThreshold={1} radius={0.7} />
+        </EffectComposer>
       </Canvas>
     </S.ThreeWrapper>
   );

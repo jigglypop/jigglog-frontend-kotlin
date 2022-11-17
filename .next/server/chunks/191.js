@@ -35,10 +35,11 @@ const GradientText = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().p
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "DM": () => (/* binding */ COLORS)
+/* harmony export */   "DM": () => (/* binding */ COLORS),
+/* harmony export */   "o4": () => (/* binding */ COLORSLIGHT)
 /* harmony export */ });
 /* unused harmony exports COLORS_GRAD, COLORS_PINK, COLORS_PUPLE, RANDOM_COLORS */
-const COLORS = [
+const COLORSLIGHT = [
     "#b294ff",
     "#57e6e6",
     "#feffb8",
@@ -49,6 +50,58 @@ const COLORS = [
     "#feffb8",
     "#57e6e6",
     "#b294ff", 
+];
+const COLORS = [
+    [
+        6,
+        1,
+        1
+    ],
+    [
+        6,
+        2,
+        2
+    ],
+    [
+        6,
+        3,
+        3
+    ],
+    [
+        6,
+        4,
+        1
+    ],
+    [
+        6,
+        5,
+        5
+    ],
+    [
+        6,
+        6,
+        1
+    ],
+    [
+        6,
+        7,
+        1
+    ],
+    [
+        6,
+        2,
+        1
+    ],
+    [
+        6,
+        3,
+        1
+    ],
+    [
+        6,
+        2,
+        5
+    ], 
 ];
 const COLORS_GRAD = (/* unused pure expression or super */ null && ([
     "#f98fe4",

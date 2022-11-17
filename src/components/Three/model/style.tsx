@@ -21,7 +21,7 @@ export const SmallTag = styled.div<ISmallTag>`
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: rgba(22, 22, 22, 0.2);
+  /* background: rgba(22, 22, 22, 0.2); */
   font-size: 8px;
   font-weight: 800;
   min-width: 50px;
@@ -29,11 +29,11 @@ export const SmallTag = styled.div<ISmallTag>`
   height: 30px;
   width: 200px;
 
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  /* -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px); */
   border-radius: 15px;
   padding: 10px;
-  box-shadow: 0 0 10px #1d1d1d;
+  /* box-shadow: 0 0 10px #1d1d1d; */
 
   .categoryset-text {
     font-size: 1rem;
@@ -47,4 +47,22 @@ export const SmallTag = styled.div<ISmallTag>`
       font-size: 1.2rem;
     }
   }
+`;
+
+export const InnerText = styled.p`
+  color: white;
+  font-size: 500px;
+  text-shadow: 0 0 10px;
+  margin-bottom: 40px;
+`;
+
+export const Line = styled.p`
+  background-color: white;
+  width: 30px;
+  height: 2px;
+
+  margin-right: 10px;
+  margin-bottom: 40px;
+
+  opacity: 0.5;
 `;

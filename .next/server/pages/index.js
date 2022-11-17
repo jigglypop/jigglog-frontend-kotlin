@@ -5,7 +5,7 @@ exports.id = 405;
 exports.ids = [405];
 exports.modules = {
 
-/***/ 2940:
+/***/ 2325:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 
@@ -26,114 +26,113 @@ var external_styled_components_default = /*#__PURE__*/__webpack_require__.n(exte
 ;// CONCATENATED MODULE: ./src/components/Three/style.tsx
 
 const ThreeWrapper = (external_styled_components_default()).div`
-    top: 0;
-    left: 0;
-    background: black;
-    width: 100vw;
-    height: 100vh;
+  top: 0;
+  left: 0;
+  /* background: linear-gradient(to right, #8e2de2, #4a00e0); */
+  width: 100vw;
+  height: 100vh;
 `;
 const Tag = (external_styled_components_default()).div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.3s ease-in;
-    position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease-in;
+  position: fixed;
 
-    background: rgba(22, 22, 22, 0.2);
-    top: 100px;
-    right: 100px;
-    line-height: 1.5rem;
+  background: rgba(22, 22, 22, 0.2);
+  top: 100px;
+  right: 100px;
+  line-height: 1.5rem;
+  font-size: 12px;
+
+  width: 40rem;
+  min-width: 5rem;
+  height: 20rem;
+
+  color: white;
+  box-shadow: 0 0 20px var(--black);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 10px;
+  box-shadow: 0 0 10px #1d1d1d;
+  z-index: 15;
+
+  h1 {
+    font-size: 26px;
+    font-weight: 800;
+    margin: 20px;
+  }
+  h3 {
     font-size: 12px;
+    font-weight: 800;
+    margin: 2px;
+    padding: 0;
+  }
+  h2 {
+    font-size: 12px;
+    margin: 10px;
+    font-weight: 600;
+    text-shadow: 0 0 10px white;
+  }
 
-    width: 40rem;
-    min-width: 5rem;
-    height: 20rem;
+  &.isWide {
+    display: none;
+  }
 
-    color: white;
-    box-shadow: 0 0 20px var(--black);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
-    padding: 10px;
-    box-shadow: 0 0 10px #1d1d1d;
-    z-index: 15;
-
-    h1 {
-        font-size: 26px;
-        font-weight: 800;
-        margin: 20px;
-    }
-    h3 {
-        font-size: 12px;
-        font-weight: 800;
-        margin: 2px;
-        padding: 0;
-    }
-    h2 {
-        font-size: 12px;
-        margin: 10px;
-        font-weight: 600;
-        text-shadow: 0 0 10px white;
-    }
-
-    &.isWide {
-        display: none;
-    }
-
-    @media (max-width: 600px) {
-        display: none;
-    }
+  @media (max-width: 600px) {
+    display: none;
+  }
 `;
 const MainTitle = (external_styled_components_default()).div`
-    position: absolute;
-    justify-content: center;
-    text-align: center;
-    background: rgba(22, 22, 22, 0.6);
+  position: absolute;
+  justify-content: center;
+  text-align: center;
+  background: rgba(22, 22, 22, 0.6);
 
-    width: 50rem;
-    min-width: 5rem;
-    height: 20rem;
+  width: 50rem;
+  min-width: 5rem;
+  height: 20rem;
 
-    border-radius: 10px;
-    padding: 30px;
-    --webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    z-index: 5;
-    box-shadow: 0 0 30px rgb(30, 30, 30);
+  border-radius: 10px;
+  padding: 30px;
+  --webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  z-index: 5;
+  box-shadow: 0 0 30px rgb(30, 30, 30);
+
+  .main-title {
+    margin: 1rem;
+    position: relative;
+    font-family: "BMDOHYEON_ttf";
+    font-size: 8rem;
+    font-weight: 800;
+  }
+
+  .main-description {
+    margin: 1rem;
+    position: relative;
+    font-family: "BMDOHYEON_ttf";
+    font-size: 1.2rem;
+    font-weight: 800;
+  }
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  @media (max-width: 600px) {
+    width: 25rem;
+    height: 15rem;
 
     .main-title {
-        margin: 1rem;
-        position: relative;
-        font-family: "BMDOHYEON_ttf";
-        font-size: 8rem;
-        font-weight: 800;
+      font-size: 3em;
+      font-weight: 800;
     }
-
     .main-description {
-        margin: 1rem;
-        position: relative;
-        font-family: "BMDOHYEON_ttf";
-        font-size: 1.2rem;
-        font-weight: 800;
+      font-size: 0.8rem;
     }
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-
-    @media (max-width: 600px) {
-        width: 25rem;
-        height: 15rem;
-
-        .main-title {
-            font-size: 3em;
-            font-weight: 800;
-        }
-        .main-description {
-            font-size: 0.8rem;
-        }
-
-    }
+  }
 `;
 
 ;// CONCATENATED MODULE: external "@react-three/drei"
@@ -436,7 +435,7 @@ const SmallTag = (external_styled_components_default()).div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: rgba(22, 22, 22, 0.2);
+  /* background: rgba(22, 22, 22, 0.2); */
   font-size: 8px;
   font-weight: 800;
   min-width: 50px;
@@ -444,11 +443,11 @@ const SmallTag = (external_styled_components_default()).div`
   height: 30px;
   width: 200px;
 
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  /* -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px); */
   border-radius: 15px;
   padding: 10px;
-  box-shadow: 0 0 10px #1d1d1d;
+  /* box-shadow: 0 0 10px #1d1d1d; */
 
   .categoryset-text {
     font-size: 1rem;
@@ -463,13 +462,26 @@ const SmallTag = (external_styled_components_default()).div`
     }
   }
 `;
+const InnerText = (external_styled_components_default()).p`
+  color: white;
+  font-size: 500px;
+  text-shadow: 0 0 10px;
+  margin-bottom: 40px;
+`;
+const Line = (external_styled_components_default()).p`
+  background-color: white;
+  width: 30px;
+  height: 2px;
 
-// EXTERNAL MODULE: ./src/components/common/text/Text.tsx
-var Text = __webpack_require__(2053);
+  margin-right: 10px;
+  margin-bottom: 40px;
+
+  opacity: 0.5;
+`;
+
 // EXTERNAL MODULE: ./src/constants/constants.ts
 var constants = __webpack_require__(1493);
 ;// CONCATENATED MODULE: ./src/components/Three/model/CategoryStarSet.tsx
-
 
 
 
@@ -526,10 +538,10 @@ function CategoryStarSet({ categorySet  }) {
     };
     const data = (0,external_react_.useMemo)(()=>{
         return new Array(categorySet.length).fill([]).map((_, i)=>({
-                x: Math.random() * 20 + xyzMap(i)[0] * (20 + i * 10),
-                y: Math.random() * 20 + xyzMap(i)[1] * (20 + i * 10),
-                z: Math.random() * 20 + xyzMap(i)[2] * (20 + i * 10),
-                s: 1
+                x: Math.random() * 25 + xyzMap(i)[0] * (25 + i * 10),
+                y: Math.random() * 25 + xyzMap(i)[1] * (25 + i * 10),
+                z: Math.random() * 25 + xyzMap(i)[2] * (25 + i * 10),
+                s: 0.5
             }));
     }, [
         categorySet
@@ -556,27 +568,38 @@ function CategoryStarSet({ categorySet  }) {
                     children: [
                         /*#__PURE__*/ jsx_runtime_.jsx(drei_namespaceObject.Html, {
                             zIndexRange: [
-                                1,
+                                2,
                                 0
                             ],
-                            children: /*#__PURE__*/ jsx_runtime_.jsx(SmallTag, {
+                            children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)(SmallTag, {
                                 onClick: ()=>onClick(i),
-                                children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)(Text/* GradientText */.t, {
-                                    className: "categoryset-text",
-                                    children: [
-                                        categorySet[i].title,
-                                        " ",
-                                        `(${categorySet[i].posts})`
-                                    ]
-                                })
+                                children: [
+                                    /*#__PURE__*/ jsx_runtime_.jsx(Line, {}),
+                                    /*#__PURE__*/ (0,jsx_runtime_.jsxs)(InnerText, {
+                                        className: "categoryset-text",
+                                        children: [
+                                            categorySet[i].title,
+                                            " ",
+                                            `(${categorySet[i].posts})`
+                                        ]
+                                    })
+                                ]
                             })
                         }),
-                        /*#__PURE__*/ jsx_runtime_.jsx("spotLight", {
-                            intensity: 0.6,
-                            color: constants/* COLORS */.DM[i % 10]
-                        }),
-                        /*#__PURE__*/ jsx_runtime_.jsx("meshStandardMaterial", {
-                            color: constants/* COLORS */.DM[i % 10]
+                        /*#__PURE__*/ jsx_runtime_.jsx(drei_namespaceObject.Sphere, {
+                            args: [
+                                1.5,
+                                100,
+                                100
+                            ],
+                            children: /*#__PURE__*/ jsx_runtime_.jsx("meshBasicMaterial", {
+                                color: [
+                                    constants/* COLORS */.DM[i % 10][0],
+                                    constants/* COLORS */.DM[i % 10][1],
+                                    constants/* COLORS */.DM[i % 10][2], 
+                                ],
+                                toneMapped: false
+                            })
                         })
                     ]
                 })
@@ -617,7 +640,97 @@ const Outer = ({ setProgress  })=>{
     });
 };
 
+// EXTERNAL MODULE: ./src/components/common/text/Text.tsx
+var Text = __webpack_require__(2053);
+;// CONCATENATED MODULE: ./src/components/Three/model/CategoryLight.tsx
+
+
+
+
+function CategoryLight({ categorySet  }) {
+    const { 0: geometry  } = (0,external_react_.useState)(()=>new external_three_.SphereGeometry(1, 32, 32));
+    const xyzMap = (i)=>{
+        const obj = [
+            [
+                1,
+                1,
+                1
+            ],
+            [
+                1,
+                1,
+                -1
+            ],
+            [
+                1,
+                -1,
+                1
+            ],
+            [
+                1,
+                -1,
+                -1
+            ],
+            [
+                -1,
+                1,
+                1
+            ],
+            [
+                -1,
+                1,
+                -1
+            ],
+            [
+                -1,
+                -1,
+                1
+            ],
+            [
+                -1,
+                -1,
+                -1
+            ], 
+        ];
+        return obj[i % 8];
+    };
+    const data = (0,external_react_.useMemo)(()=>{
+        return new Array(categorySet.length).fill([]).map((_, i)=>({
+                x: Math.random() * 15 + xyzMap(i)[0] * (15 + i * 10),
+                y: Math.random() * 15 + xyzMap(i)[1] * (15 + i * 10),
+                z: Math.random() * 15 + xyzMap(i)[2] * (15 + i * 10),
+                s: 1
+            }));
+    }, [
+        categorySet
+    ]);
+    return /*#__PURE__*/ jsx_runtime_.jsx(jsx_runtime_.Fragment, {
+        children: data.map((props, i)=>/*#__PURE__*/ jsx_runtime_.jsx("group", {
+                children: /*#__PURE__*/ jsx_runtime_.jsx("mesh", {
+                    position: [
+                        props.x,
+                        props.y,
+                        props.z
+                    ],
+                    scale: [
+                        props.s,
+                        props.s,
+                        props.s
+                    ],
+                    children: /*#__PURE__*/ jsx_runtime_.jsx("spotLight", {
+                        intensity: 0.2,
+                        color: constants/* COLORSLIGHT */.o4[i % 10]
+                    })
+                })
+            }, i))
+    });
+}
+
+;// CONCATENATED MODULE: external "@react-three/postprocessing"
+const postprocessing_namespaceObject = require("@react-three/postprocessing");
 ;// CONCATENATED MODULE: ./src/components/Three/ThreeOuter.tsx
+
+
 
 
 
@@ -693,6 +806,10 @@ function ThreeOuter({ categorySet  }) {
                         minDistance: 60,
                         maxDistance: 100
                     }),
+                    /*#__PURE__*/ jsx_runtime_.jsx(drei_namespaceObject.Stars, {
+                        saturation: 10,
+                        count: 1000
+                    }),
                     /*#__PURE__*/ jsx_runtime_.jsx(Earth, {
                         setProgress: setProgress
                     }),
@@ -705,13 +822,32 @@ function ThreeOuter({ categorySet  }) {
                     /*#__PURE__*/ jsx_runtime_.jsx("fog", {
                         attach: "fog",
                         args: [
-                            "#0a0a0a",
+                            "#030303",
                             15,
                             120
                         ]
                     }),
                     /*#__PURE__*/ jsx_runtime_.jsx(CategoryStarSet, {
                         categorySet: categorySet
+                    }),
+                    /*#__PURE__*/ jsx_runtime_.jsx(CategoryLight, {
+                        categorySet: categorySet
+                    }),
+                    /*#__PURE__*/ jsx_runtime_.jsx("color", {
+                        attach: "background",
+                        args: [
+                            "#010101"
+                        ]
+                    }),
+                    /*#__PURE__*/ jsx_runtime_.jsx(Earth, {
+                        setProgress: setProgress
+                    }),
+                    /*#__PURE__*/ jsx_runtime_.jsx(postprocessing_namespaceObject.EffectComposer, {
+                        children: /*#__PURE__*/ jsx_runtime_.jsx(postprocessing_namespaceObject.Bloom, {
+                            mipmapBlur: true,
+                            luminanceThreshold: 1,
+                            radius: 0.7
+                        })
                     })
                 ]
             })
@@ -830,7 +966,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _api_Category__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(5425);
 /* harmony import */ var _components_common_meta_Meta__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(7923);
 /* harmony import */ var _components_common_responsive_Responsive__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(4472);
-/* harmony import */ var _components_Three_ThreeOuter__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(2940);
+/* harmony import */ var _components_Three_ThreeOuter__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(2325);
 /* harmony import */ var _store_categories_atom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(3160);
 /* harmony import */ var _util_toJson__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(1216);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([jotai__WEBPACK_IMPORTED_MODULE_1__, _store_categories_atom__WEBPACK_IMPORTED_MODULE_7__]);
@@ -844,6 +980,7 @@ var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([jota
 
 
 
+// import { EffectComposer, Bloom } from "@react-three/postprocessing";
 function App() {
     const categories = (0,jotai__WEBPACK_IMPORTED_MODULE_1__.useAtomValue)(_store_categories_atom__WEBPACK_IMPORTED_MODULE_7__/* .categoriesAtom */ .m);
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_components_common_responsive_Responsive__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z, {

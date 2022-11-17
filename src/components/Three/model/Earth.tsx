@@ -5,6 +5,7 @@ import { useSpring } from "@react-spring/three";
 import { useGltf } from "../util/gltf";
 import { Html } from "@react-three/drei";
 import { $ } from "../../../util/JQuery";
+import * as THREE from "three";
 
 export interface IStoreOuter {
   setProgress: React.Dispatch<React.SetStateAction<number>>;
