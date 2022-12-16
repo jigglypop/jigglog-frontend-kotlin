@@ -4,12 +4,12 @@
   "/write": "pages/write.html",
   "/_error": "pages/_error.js",
   "/portfolio/[id]": "pages/portfolio/[id].js",
-  "/portfolios": "pages/portfolios.js",
   "/": "pages/index.js",
   "/category/[id]": "pages/category/[id].js",
+  "/portfolios": "pages/portfolios.js",
+  "/resume": "pages/resume.js",
   "/post/[id]": "pages/post/[id].js",
   "/tag/[id]": "pages/tag/[id].js",
-  "/resume": "pages/resume.js",
   "/update/[id]": "pages/update/[id].js",
   "/404": "pages/404.html"
 }

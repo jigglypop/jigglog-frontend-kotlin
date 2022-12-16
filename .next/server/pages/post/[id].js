@@ -182,7 +182,7 @@ var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_Del
 
 
 function CommentItem({ comment , type  }) {
-    const { openId , setOpen  } = (0,_store_comment_query__WEBPACK_IMPORTED_MODULE_6__/* .useCommentActions */ .K)();
+    const { openId , setOpen , user  } = (0,_store_comment_query__WEBPACK_IMPORTED_MODULE_6__/* .useCommentActions */ .K)();
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
         children: [
             comment && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_style__WEBPACK_IMPORTED_MODULE_2__/* .CommentItemDiv */ .OE, {
@@ -202,7 +202,7 @@ function CommentItem({ comment , type  }) {
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_style__WEBPACK_IMPORTED_MODULE_2__/* .CommenItemContentDiv */ .fG, {
                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h4", {
-                            children: comment.user && comment.user.username[0] === "M" ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                            children: comment.user && comment.user?.username[0] === "M" && user?.user?.username !== "ydh2244" && comment.user.username !== user?.user?.username ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
                                 children: "* 비밀글입니다"
                             }) : comment.content
                         })

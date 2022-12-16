@@ -7,7 +7,7 @@ import { useCommentActions } from "../../../store/comment/query";
 import { ICommentItem } from "./type";
 
 export default function CommentItem({ comment, type }: ICommentItem) {
-  const { openId, setOpen } = useCommentActions();
+  const { openId, setOpen, user } = useCommentActions();
   return (
     <div>
       {comment && (
@@ -18,7 +18,10 @@ export default function CommentItem({ comment, type }: ICommentItem) {
           </S.CommentItemUpperDiv>
           <S.CommenItemContentDiv>
             <h4>
-              {comment.user && comment.user.username[0] === "M" ? (
+              {comment.user &&
+              comment.user?.username[0] === "M" &&
+              user?.user?.username !== "ydh2244" &&
+              comment.user.username !== user?.user?.username ? (
                 <span>* 비밀글입니다</span>
               ) : (
                 comment.content
