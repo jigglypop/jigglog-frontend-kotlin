@@ -17,7 +17,13 @@ export default function CommentItem({ comment, type }: ICommentItem) {
             <DeleteComment comment={comment} type={type} />
           </S.CommentItemUpperDiv>
           <S.CommenItemContentDiv>
-            <h4>{comment.content}</h4>
+            <h4>
+              {comment.user && comment.user.username[0] === "M" ? (
+                <span>* 비밀글입니다</span>
+              ) : (
+                comment.content
+              )}
+            </h4>
           </S.CommenItemContentDiv>
           {type === "comment" && (
             <S.CommenItemLowerDiv>

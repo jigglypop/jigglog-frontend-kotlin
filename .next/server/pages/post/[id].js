@@ -202,7 +202,9 @@ function CommentItem({ comment , type  }) {
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_style__WEBPACK_IMPORTED_MODULE_2__/* .CommenItemContentDiv */ .fG, {
                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h4", {
-                            children: comment.content
+                            children: comment.user && comment.user.username[0] === "M" ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                children: "* 비밀글입니다"
+                            }) : comment.content
                         })
                     }),
                     type === "comment" && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_style__WEBPACK_IMPORTED_MODULE_2__/* .CommenItemLowerDiv */ .Cc, {
@@ -310,6 +312,11 @@ const CommenItemContentDiv = (styled_components__WEBPACK_IMPORTED_MODULE_0___def
     font-size: 1.4rem;
     font-weight: 800;
     color: black;
+
+    span {
+      font-size: 1.2rem;
+      color: #ff4f4f;
+    }
   }
 `;
 // 댓글 아래

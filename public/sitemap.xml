@@ -497,6 +497,18 @@
   </url>
 
   <url>
+    <loc>https://jigglog.com/post/227</loc>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
+  </url>
+
+  <url>
+    <loc>https://jigglog.com/post/231</loc>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
+  </url>
+
+  <url>
     <loc>https://jigglog.com/category/2</loc>
     <changefreq>daily</changefreq>
     <priority>1</priority>
@@ -546,6 +558,12 @@
 
   <url>
     <loc>https://jigglog.com/category/18</loc>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
+  </url>
+
+  <url>
+    <loc>https://jigglog.com/category/20</loc>
     <changefreq>daily</changefreq>
     <priority>1</priority>
   </url>
@@ -768,6 +786,24 @@
 
   <url>
     <loc>https://jigglog.com/tag/76</loc>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
+  </url>
+
+  <url>
+    <loc>https://jigglog.com/tag/78</loc>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
+  </url>
+
+  <url>
+    <loc>https://jigglog.com/tag/79</loc>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
+  </url>
+
+  <url>
+    <loc>https://jigglog.com/tag/80</loc>
     <changefreq>daily</changefreq>
     <priority>1</priority>
   </url>

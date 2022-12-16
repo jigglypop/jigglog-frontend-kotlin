@@ -67,6 +67,11 @@ export const CommenItemContentDiv = styled.div`
     font-size: 1.4rem;
     font-weight: 800;
     color: black;
+
+    span {
+      font-size: 1.2rem;
+      color: #ff4f4f;
+    }
   }
 `;
 // 댓글 아래
