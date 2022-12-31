@@ -19,7 +19,7 @@ export default function CommentItem({ comment, type }: ICommentItem) {
           <S.CommenItemContentDiv>
             <h4>
               {comment.user &&
-              comment.user?.username[0] === "M" &&
+              comment.user.username[0] === "M" &&
               user?.user?.username !== "ydh2244" &&
               comment.user.username !== user?.user?.username ? (
                 <span>* 비밀글입니다</span>

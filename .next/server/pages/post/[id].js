@@ -202,7 +202,7 @@ function CommentItem({ comment , type  }) {
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_style__WEBPACK_IMPORTED_MODULE_2__/* .CommenItemContentDiv */ .fG, {
                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h4", {
-                            children: comment.user && comment.user?.username[0] === "M" && user?.user?.username !== "ydh2244" && comment.user.username !== user?.user?.username ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                            children: comment.user && comment.user.username[0] === "M" && user?.user?.username !== "ydh2244" && comment.user.username !== user?.user?.username ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
                                 children: "* 비밀글입니다"
                             }) : comment.content
                         })
