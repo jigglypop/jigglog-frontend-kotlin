@@ -1788,23 +1788,20 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _api_Comment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3022);
 /* harmony import */ var _api_Recomment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(8306);
-/* harmony import */ var _util_toast__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(7226);
+/* harmony import */ var _util_toast__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(7226);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(6517);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _util_JQuery__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(3703);
+/* harmony import */ var _util_JQuery__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(3703);
 /* harmony import */ var jotai__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(2451);
-/* harmony import */ var _post_atom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(7481);
-/* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(1175);
-/* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_query__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var jotai_utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(2752);
-/* harmony import */ var _atom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(2380);
-/* harmony import */ var _user_atom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(15);
-/* harmony import */ var _login_atom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(1518);
-/* harmony import */ var _register_atom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(3323);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([jotai__WEBPACK_IMPORTED_MODULE_4__, _post_atom__WEBPACK_IMPORTED_MODULE_5__, jotai_utils__WEBPACK_IMPORTED_MODULE_7__, _atom__WEBPACK_IMPORTED_MODULE_8__, _user_atom__WEBPACK_IMPORTED_MODULE_9__, _login_atom__WEBPACK_IMPORTED_MODULE_10__, _register_atom__WEBPACK_IMPORTED_MODULE_11__]);
-([jotai__WEBPACK_IMPORTED_MODULE_4__, _post_atom__WEBPACK_IMPORTED_MODULE_5__, jotai_utils__WEBPACK_IMPORTED_MODULE_7__, _atom__WEBPACK_IMPORTED_MODULE_8__, _user_atom__WEBPACK_IMPORTED_MODULE_9__, _login_atom__WEBPACK_IMPORTED_MODULE_10__, _register_atom__WEBPACK_IMPORTED_MODULE_11__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
-
-
+/* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(1175);
+/* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_query__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var jotai_utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(2752);
+/* harmony import */ var _atom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(2380);
+/* harmony import */ var _user_atom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(15);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(1853);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_9__);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([jotai__WEBPACK_IMPORTED_MODULE_4__, jotai_utils__WEBPACK_IMPORTED_MODULE_6__, _atom__WEBPACK_IMPORTED_MODULE_7__, _user_atom__WEBPACK_IMPORTED_MODULE_8__]);
+([jotai__WEBPACK_IMPORTED_MODULE_4__, jotai_utils__WEBPACK_IMPORTED_MODULE_6__, _atom__WEBPACK_IMPORTED_MODULE_7__, _user_atom__WEBPACK_IMPORTED_MODULE_8__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
 
 
 
@@ -1819,14 +1816,13 @@ var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([jota
 
 
 const useCommentActions = ()=>{
-    const [commentform, setCommentForm] = (0,jotai__WEBPACK_IMPORTED_MODULE_4__.useAtom)(_atom__WEBPACK_IMPORTED_MODULE_8__/* .commentFormAtom */ .v0);
-    const [comments, setComments] = (0,jotai__WEBPACK_IMPORTED_MODULE_4__.useAtom)(_atom__WEBPACK_IMPORTED_MODULE_8__/* .commentsAtom */ .SY);
-    const [openId, setOpenId] = (0,jotai__WEBPACK_IMPORTED_MODULE_4__.useAtom)(_atom__WEBPACK_IMPORTED_MODULE_8__/* .commentsOpenAtom */ .Ln);
-    const post = (0,jotai__WEBPACK_IMPORTED_MODULE_4__.useAtomValue)(_post_atom__WEBPACK_IMPORTED_MODULE_5__/* .postAtom */ .a);
-    const user = (0,jotai__WEBPACK_IMPORTED_MODULE_4__.useAtomValue)(_user_atom__WEBPACK_IMPORTED_MODULE_9__/* .userAtom */ .L);
-    const setLoginForm = (0,jotai__WEBPACK_IMPORTED_MODULE_4__.useSetAtom)(_login_atom__WEBPACK_IMPORTED_MODULE_10__/* .loginFormAtom */ .n);
-    const [registerform, setRegisterForm] = (0,jotai__WEBPACK_IMPORTED_MODULE_4__.useAtom)(_register_atom__WEBPACK_IMPORTED_MODULE_11__/* .registerFormAtom */ .W);
-    const { mutate: getComments  } = (0,react_query__WEBPACK_IMPORTED_MODULE_6__.useMutation)(_api_Comment__WEBPACK_IMPORTED_MODULE_1__/* .getCommentsApi */ .OF, {
+    const [commentform, setCommentForm] = (0,jotai__WEBPACK_IMPORTED_MODULE_4__.useAtom)(_atom__WEBPACK_IMPORTED_MODULE_7__/* .commentFormAtom */ .v0);
+    const [comments, setComments] = (0,jotai__WEBPACK_IMPORTED_MODULE_4__.useAtom)(_atom__WEBPACK_IMPORTED_MODULE_7__/* .commentsAtom */ .SY);
+    const [openId, setOpenId] = (0,jotai__WEBPACK_IMPORTED_MODULE_4__.useAtom)(_atom__WEBPACK_IMPORTED_MODULE_7__/* .commentsOpenAtom */ .Ln);
+    const user = (0,jotai__WEBPACK_IMPORTED_MODULE_4__.useAtomValue)(_user_atom__WEBPACK_IMPORTED_MODULE_8__/* .userAtom */ .L);
+    // 현재 파라미터
+    const router = (0,next_router__WEBPACK_IMPORTED_MODULE_9__.useRouter)();
+    const { mutate: getComments  } = (0,react_query__WEBPACK_IMPORTED_MODULE_5__.useMutation)(_api_Comment__WEBPACK_IMPORTED_MODULE_1__/* .getCommentsApi */ .OF, {
         onSuccess (res) {
             setComments({
                 error: "",
@@ -1856,14 +1852,16 @@ const useCommentActions = ()=>{
         });
     }, 500), []);
     // comment 집어넣기
-    const { mutate: onSubmitComment  } = (0,react_query__WEBPACK_IMPORTED_MODULE_6__.useMutation)(()=>(0,_api_Comment__WEBPACK_IMPORTED_MODULE_1__/* .postCommentsApi */ .Cj)(post.post.id, commentform), {
+    const { mutate: onSubmitComment  } = (0,react_query__WEBPACK_IMPORTED_MODULE_5__.useMutation)(()=>{
+        return (0,_api_Comment__WEBPACK_IMPORTED_MODULE_1__/* .postCommentsApi */ .Cj)(parseInt(router?.query?.id), commentform);
+    }, {
         onSuccess () {
-            (0,_util_toast__WEBPACK_IMPORTED_MODULE_12__/* .createToast */ .Y)("댓글 등록");
-            getComments(post.post.id);
+            (0,_util_toast__WEBPACK_IMPORTED_MODULE_10__/* .createToast */ .Y)("댓글 등록");
+            getComments(parseInt(router?.query?.id));
             setCommentForm({
                 content: ""
             });
-            const textArea = (0,_util_JQuery__WEBPACK_IMPORTED_MODULE_13__.$)(".writecomment-textarea").get();
+            const textArea = (0,_util_JQuery__WEBPACK_IMPORTED_MODULE_11__.$)(".writecomment-textarea").get();
             textArea.value = "";
         },
         onError (res) {
@@ -1873,14 +1871,14 @@ const useCommentActions = ()=>{
             });
         }
     });
-    const { mutate: onSubmitRecomment  } = (0,react_query__WEBPACK_IMPORTED_MODULE_6__.useMutation)(()=>(0,_api_Recomment__WEBPACK_IMPORTED_MODULE_2__/* .postRecommentsApi */ .p)(openId.openId, commentform), {
+    const { mutate: onSubmitRecomment  } = (0,react_query__WEBPACK_IMPORTED_MODULE_5__.useMutation)(()=>(0,_api_Recomment__WEBPACK_IMPORTED_MODULE_2__/* .postRecommentsApi */ .p)(openId.openId, commentform), {
         onSuccess () {
-            (0,_util_toast__WEBPACK_IMPORTED_MODULE_12__/* .createToast */ .Y)("대댓글 등록");
-            getComments(post.post.id);
+            (0,_util_toast__WEBPACK_IMPORTED_MODULE_10__/* .createToast */ .Y)("대댓글 등록");
+            getComments(parseInt(router?.query?.id));
             setCommentForm({
                 content: ""
             });
-            const textArea = (0,_util_JQuery__WEBPACK_IMPORTED_MODULE_13__.$)(".writecomment-textarea").get();
+            const textArea = (0,_util_JQuery__WEBPACK_IMPORTED_MODULE_11__.$)(".writecomment-textarea").get();
             textArea.value = "";
         },
         onError (res) {
@@ -1890,16 +1888,16 @@ const useCommentActions = ()=>{
             });
         }
     });
-    const { mutate: onGoRemoveRecomment  } = (0,react_query__WEBPACK_IMPORTED_MODULE_6__.useMutation)((commentId)=>(0,_api_Recomment__WEBPACK_IMPORTED_MODULE_2__/* .deleteRecommentsApi */ .Z)(commentId), {
+    const { mutate: onGoRemoveRecomment  } = (0,react_query__WEBPACK_IMPORTED_MODULE_5__.useMutation)((commentId)=>(0,_api_Recomment__WEBPACK_IMPORTED_MODULE_2__/* .deleteRecommentsApi */ .Z)(commentId), {
         onSuccess () {
-            (0,_util_toast__WEBPACK_IMPORTED_MODULE_12__/* .createToast */ .Y)("대댓글 삭제");
-            getComments(post.post.id);
+            (0,_util_toast__WEBPACK_IMPORTED_MODULE_10__/* .createToast */ .Y)("대댓글 삭제");
+            getComments(parseInt(router?.query?.id));
         }
     });
-    const { mutate: onGoRemoveComment  } = (0,react_query__WEBPACK_IMPORTED_MODULE_6__.useMutation)((recommentId)=>(0,_api_Comment__WEBPACK_IMPORTED_MODULE_1__/* .deleteCommentsApi */ .Ct)(recommentId), {
+    const { mutate: onGoRemoveComment  } = (0,react_query__WEBPACK_IMPORTED_MODULE_5__.useMutation)((recommentId)=>(0,_api_Comment__WEBPACK_IMPORTED_MODULE_1__/* .deleteCommentsApi */ .Ct)(recommentId), {
         onSuccess () {
-            (0,_util_toast__WEBPACK_IMPORTED_MODULE_12__/* .createToast */ .Y)("댓글 삭제");
-            getComments(post.post.id);
+            (0,_util_toast__WEBPACK_IMPORTED_MODULE_10__/* .createToast */ .Y)("댓글 삭제");
+            getComments(parseInt(router?.query?.id));
         }
     });
     return {
@@ -1918,9 +1916,9 @@ const useCommentActions = ()=>{
     };
 };
 function useCommentEffect(getComments, post) {
-    const setCommentForm = (0,jotai_utils__WEBPACK_IMPORTED_MODULE_7__.useResetAtom)(_atom__WEBPACK_IMPORTED_MODULE_8__/* .commentFormAtom */ .v0);
-    const setComments = (0,jotai_utils__WEBPACK_IMPORTED_MODULE_7__.useResetAtom)(_atom__WEBPACK_IMPORTED_MODULE_8__/* .commentsAtom */ .SY);
-    const setOpenId = (0,jotai_utils__WEBPACK_IMPORTED_MODULE_7__.useResetAtom)(_atom__WEBPACK_IMPORTED_MODULE_8__/* .commentsOpenAtom */ .Ln);
+    const setCommentForm = (0,jotai_utils__WEBPACK_IMPORTED_MODULE_6__.useResetAtom)(_atom__WEBPACK_IMPORTED_MODULE_7__/* .commentFormAtom */ .v0);
+    const setComments = (0,jotai_utils__WEBPACK_IMPORTED_MODULE_6__.useResetAtom)(_atom__WEBPACK_IMPORTED_MODULE_7__/* .commentsAtom */ .SY);
+    const setOpenId = (0,jotai_utils__WEBPACK_IMPORTED_MODULE_6__.useResetAtom)(_atom__WEBPACK_IMPORTED_MODULE_7__/* .commentsOpenAtom */ .Ln);
     (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(()=>{
         if (post) {
             getComments(post.id);
@@ -2384,7 +2382,7 @@ module.exports = import("remark-gfm");;
 var __webpack_require__ = require("../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [676,664,425,930,874,195,240,703,16,235,853], () => (__webpack_exec__(9034)));
+var __webpack_exports__ = __webpack_require__.X(0, [676,664,425,930,874,195,240,703,16,565,853], () => (__webpack_exec__(9034)));
 module.exports = __webpack_exports__;
 
 })();

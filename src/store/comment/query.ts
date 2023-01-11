@@ -8,7 +8,7 @@ import { deleteRecommentsApi, postRecommentsApi } from "../../api/Recomment";
 import { createToast } from "../../util/toast";
 import { debounce } from "lodash";
 import { $ } from "../../util/JQuery";
-import { useAtom, useAtomValue, useSetAtom } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
 import { postAtom } from "../post/atom";
 import { UseMutateFunction, useMutation } from "react-query";
 import { WritableAtom } from "jotai";
@@ -17,8 +17,7 @@ import { useEffect } from "react";
 import { commentFormAtom, commentsAtom, commentsOpenAtom } from "./atom";
 import { ICommentsAtom, ICommentsFormAtom, ICommentsOpenAtom } from "./type";
 import { userAtom } from "../user/atom";
-import { loginFormAtom } from "../login/atom";
-import { registerFormAtom } from "../register/atom";
+import { useRouter } from "next/router";
 
 export type IUseCommentActions = {
   type: string;
@@ -29,10 +28,9 @@ export const useCommentActions = () => {
   const [commentform, setCommentForm] = useAtom(commentFormAtom);
   const [comments, setComments] = useAtom(commentsAtom);
   const [openId, setOpenId] = useAtom(commentsOpenAtom);
-  const post = useAtomValue(postAtom);
   const user = useAtomValue(userAtom);
-  const setLoginForm = useSetAtom(loginFormAtom);
-  const [registerform, setRegisterForm] = useAtom(registerFormAtom);
+  // 현재 파라미터
+  const router = useRouter();
 
   const { mutate: getComments } = useMutation(getCommentsApi, {
     onSuccess(res) {
@@ -69,15 +67,20 @@ export const useCommentActions = () => {
 
   // comment 집어넣기
   const { mutate: onSubmitComment } = useMutation(
-    () => postCommentsApi(post.post.id, commentform),
+    () => {
+      return postCommentsApi(
+        parseInt(router?.query?.id as string),
+        commentform
+      );
+    },
     {
       onSuccess() {
         createToast("댓글 등록");
-        getComments(post.post.id);
+        getComments(parseInt(router?.query?.id as string));
         setCommentForm({
           content: "",
         });
-        const textArea: any = $(".writecomment-textarea").get();
+        const textArea = $(".writecomment-textarea").get() as HTMLInputElement;
         textArea.value = "";
       },
       onError(res: { message: string }) {
@@ -94,11 +97,11 @@ export const useCommentActions = () => {
     {
       onSuccess() {
         createToast("대댓글 등록");
-        getComments(post.post.id);
+        getComments(parseInt(router?.query?.id as string));
         setCommentForm({
           content: "",
         });
-        const textArea: any = $(".writecomment-textarea").get();
+        const textArea = $(".writecomment-textarea").get() as HTMLInputElement;
         textArea.value = "";
       },
       onError(res: { message: string }) {
@@ -115,7 +118,7 @@ export const useCommentActions = () => {
     {
       onSuccess() {
         createToast("대댓글 삭제");
-        getComments(post.post.id);
+        getComments(parseInt(router?.query?.id as string));
       },
     }
   );
@@ -125,7 +128,7 @@ export const useCommentActions = () => {
     {
       onSuccess() {
         createToast("댓글 삭제");
-        getComments(post.post.id);
+        getComments(parseInt(router?.query?.id as string));
       },
     }
   );

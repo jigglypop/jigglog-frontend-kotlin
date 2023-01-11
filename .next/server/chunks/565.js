@@ -1,6 +1,6 @@
 "use strict";
-exports.id = 235;
-exports.ids = [235];
+exports.id = 565;
+exports.ids = [565];
 exports.modules = {
 
 /***/ 2504:
@@ -253,50 +253,6 @@ const AvatarToolTip = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().
   }
 `;
 
-
-/***/ }),
-
-/***/ 1518:
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "n": () => (/* binding */ loginFormAtom)
-/* harmony export */ });
-/* harmony import */ var jotai__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2451);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([jotai__WEBPACK_IMPORTED_MODULE_0__]);
-jotai__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
-
-const loginFormAtom = (0,jotai__WEBPACK_IMPORTED_MODULE_0__.atom)({
-    username: "",
-    password: ""
-});
-loginFormAtom.debugLabel = "login";
-
-__webpack_async_result__();
-} catch(e) { __webpack_async_result__(e); } });
-
-/***/ }),
-
-/***/ 3323:
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "W": () => (/* binding */ registerFormAtom)
-/* harmony export */ });
-/* harmony import */ var jotai__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2451);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([jotai__WEBPACK_IMPORTED_MODULE_0__]);
-jotai__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
-
-const registerFormAtom = (0,jotai__WEBPACK_IMPORTED_MODULE_0__.atom)({
-    username: "",
-    password: ""
-});
-registerFormAtom.debugLabel = "register";
-
-__webpack_async_result__();
-} catch(e) { __webpack_async_result__(e); } });
 
 /***/ })
 
